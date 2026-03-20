@@ -1,0 +1,209 @@
+.section {
+  position: relative;
+  padding: 7rem 0;
+  background: var(--blanco-hueso);
+  overflow: hidden;
+}
+
+.bgAccent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(232, 223, 208, 0.4), transparent);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+/* ── Story + Timeline grid ── */
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-bottom: 5rem;
+  align-items: start;
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.storyText p {
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: var(--texto-suave);
+  font-weight: 300;
+}
+
+.signatureBlock {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+.signatureLine {
+  width: 60px;
+  height: 2px;
+  background: var(--tierra-claro);
+  margin-bottom: 0.8rem;
+}
+
+.signatureName {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--verde-profundo);
+}
+
+.signatureRole {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* ── Timeline ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 2.2rem;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 16px;
+  bottom: 0;
+  width: 1px;
+  background: var(--crema-oscuro);
+}
+
+.timelineItem:last-child::before {
+  display: none;
+}
+
+.timelineDot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--tierra-claro);
+  flex-shrink: 0;
+  margin-top: 4px;
+  box-shadow: 0 0 0 4px rgba(196, 149, 106, 0.18);
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.timelineYear {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--verde-profundo);
+  line-height: 1;
+}
+
+.timelineEvent {
+  font-size: 0.92rem;
+  color: var(--texto-suave);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ── Values grid ── */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.valueCard {
+  background: #fff;
+  padding: 2rem 1.6rem;
+  border-radius: 4px;
+  border-top: 3px solid var(--verde-salvia);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.valueEmoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.valueTitle {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--verde-profundo);
+  margin-bottom: 0.65rem;
+  line-height: 1.2;
+}
+
+.valueDesc {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+}

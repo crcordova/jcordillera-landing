@@ -1,0 +1,134 @@
+.wrapper {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: all;
+}
+
+/* ── Pulse Rings ── */
+.ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: pulseRing 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.ringDelay {
+  animation-delay: 1.2s;
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ── Main Button ── */
+.btn {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 20px rgba(37, 211, 102, 0.4),
+    0 8px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #1ebe5c;
+  transform: scale(1.12);
+  box-shadow:
+    0 8px 30px rgba(37, 211, 102, 0.55),
+    0 12px 50px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+/* ── Tooltip ── */
+.tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--verde-profundo);
+  color: var(--crema);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease;
+  pointer-events: none;
+}
+
+.tooltipArrow {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid var(--verde-profundo);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-50%) translateX(-4px); }
+  to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* ── Mobile adjustments ── */
+@media (max-width: 600px) {
+  .wrapper {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}

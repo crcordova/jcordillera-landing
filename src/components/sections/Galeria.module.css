@@ -1,0 +1,352 @@
+.section {
+  padding: 7rem 0 5rem;
+  background: var(--crema);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+/* ── Carousel outer wrapper ── */
+.carouselOuter {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.carouselInner {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+/* ── Slide ── */
+.slide {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  min-height: 500px;
+  background: var(--verde-profundo);
+}
+
+/* ── Slide animations ── */
+.slideIn {
+  animation: slideInAnim 0.52s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.slideOutLeft {
+  animation: slideOutLeftAnim 0.52s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.slideOutRight {
+  animation: slideOutRightAnim 0.52s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideInAnim {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutLeftAnim {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-32px); }
+}
+
+@keyframes slideOutRightAnim {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(32px); }
+}
+
+/* ── Image panel ── */
+.imagePanel {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.imagePanelInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--verde-musgo);
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+
+.imagePanel:hover .img {
+  transform: scale(1.04);
+}
+
+.emojiFallback {
+  font-size: 9rem;
+  opacity: 0.25;
+  pointer-events: none;
+  user-select: none;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(45, 74, 46, 0) 50%,
+    rgba(45, 74, 46, 0.75) 100%
+  );
+}
+
+/* ── Badge ── */
+.badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crema);
+  background: rgba(45, 74, 46, 0.85);
+  padding: 0.32rem 0.85rem;
+  border-radius: 2px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(122, 158, 110, 0.3);
+}
+
+/* ── Progress bar ── */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 2;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--tierra-claro);
+  animation: progressAnim linear forwards;
+  transform-origin: left;
+}
+
+@keyframes progressAnim {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Content panel ── */
+.contentPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2.8rem;
+  background: var(--verde-profundo);
+  gap: 0;
+}
+
+.counter {
+  margin-bottom: 1.2rem;
+}
+
+.counterCurrent {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--tierra-claro);
+  line-height: 1;
+}
+
+.counterTotal {
+  font-size: 1rem;
+  color: rgba(196, 149, 106, 0.5);
+  font-family: var(--font-sans);
+}
+
+.itemName {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--crema);
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.dividerLine {
+  width: 40px;
+  height: 1px;
+  background: rgba(196, 149, 106, 0.5);
+  margin-bottom: 1.2rem;
+}
+
+.itemDesc {
+  font-size: 0.92rem;
+  color: rgba(232, 223, 208, 0.72);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+/* ── Dots ── */
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(232, 223, 208, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.dotActive {
+  background: var(--tierra-claro);
+  transform: scale(1.35);
+}
+
+/* ── Arrow controls ── */
+.controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.arrowBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(122, 158, 110, 0.25);
+  color: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.arrowBtn:hover {
+  background: rgba(122, 158, 110, 0.2);
+  border-color: rgba(122, 158, 110, 0.5);
+  transform: scale(1.08);
+}
+
+.arrowBtn:active {
+  transform: scale(0.94);
+}
+
+/* ── Thumbnail strip ── */
+.thumbStrip {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 1160px;
+  margin: 2.5rem auto 0;
+  padding: 0 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.thumbStrip::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--crema-oscuro);
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 108px;
+  flex-shrink: 0;
+  transition: border-color 0.22s, box-shadow 0.22s, background 0.22s, transform 0.22s;
+}
+
+.thumb:hover {
+  border-color: var(--verde-salvia);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.thumbActive {
+  border-color: var(--verde-musgo);
+  background: rgba(74, 103, 65, 0.06);
+  box-shadow: 0 2px 14px rgba(74, 103, 65, 0.14);
+}
+
+.thumbEmoji {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.thumbLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .slide {
+    grid-template-columns: 1fr;
+  }
+
+  .imagePanel {
+    min-height: 280px;
+  }
+
+  .contentPanel {
+    padding: 2rem 1.8rem;
+  }
+
+  .counterCurrent {
+    font-size: 2rem;
+  }
+
+  .itemName {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 5rem 0 4rem;
+  }
+
+  .carouselOuter {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .carouselInner {
+    border-radius: 0;
+  }
+
+  .thumbStrip {
+    padding: 0 1rem;
+  }
+}

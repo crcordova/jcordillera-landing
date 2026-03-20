@@ -1,0 +1,342 @@
+.section {
+  position: relative;
+  padding: 7rem 0;
+  background: var(--verde-profundo);
+  overflow: hidden;
+}
+
+/* ── Decorative background ── */
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(74, 103, 65, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 85%, rgba(139, 99, 71, 0.2) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(45, 74, 46, 0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Container ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tierra-claro);
+  border-bottom: 1px solid rgba(196, 149, 106, 0.5);
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  color: var(--crema);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--tierra-claro);
+}
+
+.intro {
+  font-size: 1.05rem;
+  color: rgba(232, 223, 208, 0.68);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── CTA cards ── */
+.ctaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.ctaCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 2.2rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(122, 158, 110, 0.18);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaCard:hover {
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-5px);
+  border-color: rgba(122, 158, 110, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.ctaFeatured {
+  background: rgba(122, 158, 110, 0.12);
+  border-color: rgba(122, 158, 110, 0.4);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ctaFeatured:hover {
+  background: rgba(122, 158, 110, 0.22);
+  border-color: rgba(122, 158, 110, 0.65);
+}
+
+.ctaEmoji {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.ctaTitle {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--crema);
+  line-height: 1.2;
+}
+
+.ctaDesc {
+  font-size: 0.9rem;
+  color: rgba(232, 223, 208, 0.65);
+  line-height: 1.75;
+  font-weight: 300;
+  flex: 1;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.65rem 1.25rem;
+  border-radius: 3px;
+  transition: background 0.2s;
+  margin-top: 0.3rem;
+}
+
+.ctaCard:hover .ctaBtn {
+  background: #1ebe5c;
+}
+
+/* ── Info + Map row ── */
+.infoMapRow {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+  align-items: start;
+}
+
+/* ── Info grid ── */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.infoIcon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.infoLabel {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tierra-claro);
+  margin-bottom: 0.4rem;
+}
+
+.infoText {
+  font-size: 0.92rem;
+  color: rgba(232, 223, 208, 0.75);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.infoLink {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--verde-claro);
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: color 0.2s;
+}
+
+.infoLink:hover {
+  color: var(--tierra-palido);
+}
+
+/* ── Map block ── */
+.mapBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.mapLabel {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tierra-claro);
+}
+
+.mapFrame {
+  border-radius: 6px;
+  overflow: hidden;
+  height: 260px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(122, 158, 110, 0.2);
+}
+
+.mapsLink {
+  font-size: 0.8rem;
+  color: var(--verde-claro);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(168, 196, 154, 0.35);
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.mapsLink:hover {
+  color: var(--tierra-palido);
+  border-color: var(--tierra-palido);
+}
+
+/* ── WhatsApp bottom banner ── */
+.waBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-radius: 6px;
+}
+
+.waBannerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.waBannerTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--crema);
+}
+
+.waBannerSub {
+  font-size: 0.92rem;
+  color: rgba(232, 223, 208, 0.65);
+  font-weight: 300;
+}
+
+.waBannerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 1rem 2.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
+}
+
+.waBannerBtn:hover {
+  background: #1ebe5c;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(37, 211, 102, 0.45);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .infoMapRow {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .mapFrame {
+    height: 220px;
+  }
+
+  .waBanner {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}

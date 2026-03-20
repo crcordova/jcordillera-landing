@@ -1,0 +1,242 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--crema-oscuro);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUpIn 0.5s ease both;
+}
+
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(45, 74, 46, 0.12);
+}
+
+/* ── Image panel ── */
+.imgPanel {
+  position: relative;
+  height: 200px;
+  background: var(--verde-musgo);
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 6s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.06);
+}
+
+.emojiBg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  opacity: 0.35;
+  background: linear-gradient(135deg, var(--verde-musgo) 0%, var(--verde-profundo) 100%);
+}
+
+/* ── Badges ── */
+.badge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border-radius: 100px;
+}
+
+.badgeDestacado {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--crema);
+  background: rgba(45, 74, 46, 0.85);
+  padding: 0.28rem 0.65rem;
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(122, 158, 110, 0.3);
+}
+
+/* ── Body ── */
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.4rem 1.5rem 1.5rem;
+}
+
+.nombre {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--verde-profundo);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.nombreCientifico {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-bottom: 0.9rem;
+}
+
+.desc {
+  font-size: 0.88rem;
+  color: var(--texto-suave);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+/* ── Price table ── */
+.precios {
+  border-top: 1px solid #f0ece4;
+  padding-top: 0.9rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.preciosHeader {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  opacity: 0.6;
+  padding: 0 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.precioRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.precioRow:hover {
+  background: #f4f9f2;
+}
+
+.precioRow:hover .precioWaHint {
+  opacity: 1;
+}
+
+.precioTamaño {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto);
+}
+
+.precioBolsa {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  font-weight: 300;
+}
+
+.precioValor {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--verde-profundo);
+}
+
+.precioWaHint {
+  position: absolute;
+  right: 0.5rem;
+  color: #25d366;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0;
+}
+
+.footerDesde {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.footerDesdeLabel {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  opacity: 0.7;
+}
+
+.footerDesdePrice {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--verde-profundo);
+  line-height: 1;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.65rem 1.2rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.ctaBtn:hover {
+  background: #1ebe5c;
+  transform: translateY(-1px);
+}
