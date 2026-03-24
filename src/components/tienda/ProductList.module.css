@@ -1,245 +1,361 @@
+/* ─────────────────────────────────────────────
+   GRID DEFINITION
+   Columns:  Nombre | Cat | Tamaño | Bolsa | Precio | Acción
+   La clave del fix: grid-template-columns idénticas en header y rows
+   ───────────────────────────────────────────── */
 .list {
-  background: #fff;
-  border: 1px solid var(--crema-oscuro);
-  border-radius: 4px;
-  overflow: hidden;
-  animation: fadeIn 0.35s ease both;
+  width: 100%;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ── Table header ── */
-.tableHeader {
-  display: grid;
-  grid-template-columns: 2.5fr 1.1fr 0.8fr 1.1fr 1fr 0.9fr;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background: var(--verde-profundo);
-  gap: 0.75rem;
-  position: sticky;
-  top: 57px; /* height of FiltroBar */
-  z-index: 10;
-}
-
-.tableHeader > span {
-  font-family: var(--font-sans);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(232, 223, 208, 0.65);
-}
-
-/* ── Rows ── */
-.rows {
-  display: flex;
-  flex-direction: column;
-}
-
+/* Shared column layout — aplicado en header Y en cada row */
+.tableHeader,
 .row {
   display: grid;
-  grid-template-columns: 2.5fr 1.1fr 0.8fr 1.1fr 1fr 0.9fr;
+  grid-template-columns: 1fr 120px 80px 140px 100px 110px;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 1.5rem;
+  gap: 0 12px;
+  padding: 0 16px;
+}
+
+/* ── Header ──────────────────────────────── */
+.tableHeader {
+  background: var(--surface-alt, #f5f5f3);
+  border-radius: 8px 8px 0 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted, #888);
+  border-bottom: 1px solid var(--border, #e8e8e4);
+}
+
+/* ── Rows container ───────────────────────── */
+.rows {
+  border: 1px solid var(--border, #e8e8e4);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+/* ── Product group ────────────────────────── */
+.productGroup {
+  animation: fadeUp 0.3s ease both;
+}
+
+.productGroup + .productGroup {
+  border-top: 2px solid var(--border-strong, #d4d4ce);
+}
+
+/* ── Individual row ───────────────────────── */
+.row {
+  min-height: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   transition: background 0.15s;
-  animation: slideRowIn 0.4s ease both;
-  border-bottom: 1px solid #f8f5f0;
-}
-
-.row:last-child {
-  border-bottom: none;
-}
-
-@keyframes slideRowIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
 }
 
 .row:hover {
-  background: #f8fbf7;
+  background: var(--surface-hover, #fafaf8);
 }
 
-/* First variant of a product has more top padding */
 .rowFirst {
-  padding-top: 1rem;
-}
-
-/* If it's the last variant (and next is a new product), add bottom padding */
-.rowFirst + .rowFirst,
-.rowFirst:last-child,
-.rowCont:last-child {
-  padding-bottom: 1rem;
+  padding-top: 12px;
 }
 
 .rowCont {
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background: var(--surface-cont, #fdfdfc);
 }
 
-/* Separator between different products */
-.rowFirst:not(:first-child) {
-  border-top: 2px solid var(--crema-oscuro);
-  padding-top: 1rem;
+.rowCont:hover {
+  background: var(--surface-hover, #fafaf8);
 }
 
-/* ── Column: Nombre ── */
+/* ── Nombre column ────────────────────────── */
 .colNombre {
+  min-width: 0; /* evita overflow en flex/grid children */
+}
+
+.nombreWrapper {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
-.starIcon {
-  color: var(--tierra-claro);
-  font-size: 0.65rem;
-  flex-shrink: 0;
-  margin-top: 0.3rem;
+.nombreTextos {
+  min-width: 0;
 }
 
 .rowNombre {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--verde-profundo);
-  line-height: 1.1;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a18);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Nombre tenue en filas de continuación */
+.rowNombreCont {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-muted, #aaa);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rowSci {
-  font-family: var(--font-display);
+  margin: 2px 0 0;
+  font-size: 0.75rem;
   font-style: italic;
-  font-size: 0.72rem;
-  color: var(--texto-suave);
-  margin-top: 0.15rem;
+  color: var(--text-secondary, #777);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.starIcon {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: var(--accent, #e8a020);
+  line-height: 1.6;
 }
 
 .rowContinuation {
-  color: var(--crema-oscuro);
-  font-size: 0.9rem;
-  padding-left: 0.5rem;
-  user-select: none;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted, #ccc);
+  line-height: 1.6;
 }
 
-/* ── Column: Categoría ── */
-.colCategoria {}
+/* ── Categoria column ─────────────────────── */
+.colCategoria {
+  display: flex;
+  align-items: center;   /* FIX: centra el badge verticalmente */
+  justify-content: flex-start;
+}
 
 .rowCatBadge {
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.65rem;
-  border-radius: 100px;
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   white-space: nowrap;
+  line-height: 1.4;
 }
 
-/* ── Column: Tamaño ── */
-.colTamaño {}
+/* ── Tamaño column ────────────────────────── */
+.colTamaño {
+  display: flex;
+  align-items: center;
+}
 
 .rowTamaño {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--texto);
+  font-family: var(--font-mono, monospace);
+  color: var(--text-primary, #333);
+  background: var(--surface-tag, #efefec);
+  padding: 2px 7px;
+  border-radius: 4px;
 }
 
-/* ── Column: Bolsa ── */
-.colBolsa {}
+/* ── Bolsa column ─────────────────────────── */
+.colBolsa {
+  display: flex;
+  align-items: center;
+}
 
 .rowBolsa {
   font-size: 0.8rem;
-  color: var(--texto-suave);
-  font-weight: 300;
+  color: var(--text-secondary, #666);
 }
 
-/* ── Column: Precio ── */
+/* ── Precio column ────────────────────────── */
 .colPrecio {
-  text-align: right;
+  display: flex;
+  align-items: center;
 }
 
 .rowPrecio {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--verde-profundo);
+  color: var(--text-primary, #1a1a18);
 }
 
-/* ── Column: Acción ── */
+/* ── Acción column ────────────────────────── */
 .colAccion {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 }
 
 .rowWaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 5px;
+  padding: 6px 12px;
   background: #25d366;
   color: #fff;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 0.45rem 0.85rem;
-  border-radius: 3px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.15s, transform 0.1s;
 }
 
 .rowWaBtn:hover {
-  background: #1ebe5c;
-  transform: scale(1.04);
+  background: #1ebe5d;
+  transform: translateY(-1px);
 }
 
-/* ── Responsive: mobile becomes cards in list mode too ── */
-@media (max-width: 900px) {
+.rowWaBtn:active {
+  transform: translateY(0);
+}
+
+/* ── Animations ───────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE RESPONSIVE
+   En móvil cada productGroup se convierte en una card.
+   Las columnas del grid colapsan en layout vertical.
+   ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Ocultar header de tabla en móvil */
   .tableHeader {
     display: none;
   }
 
-  .row {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    padding: 1rem 1.2rem;
-    gap: 0.5rem 1rem;
+  .rows {
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .rowFirst:not(:first-child) {
-    border-top: 3px solid var(--crema-oscuro);
+  /* Cada grupo de producto se vuelve una card */
+  .productGroup {
+    border: 1px solid var(--border, #e8e8e4);
+    border-radius: 10px;
+    overflow: hidden;
+    border-top: none; /* quitar el separador de desktop */
   }
 
-  .colNombre {
-    grid-column: 1 / -1;
+  .productGroup + .productGroup {
+    border-top: 1px solid var(--border, #e8e8e4); /* override separador desktop */
   }
 
-  .colCategoria {
+  /* Header de la card: nombre + categoría */
+  .rowFirst {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 8px;
+    padding: 12px 14px 10px;
+    background: var(--surface-alt, #f9f9f7);
+    border-bottom: 1px solid var(--border, #e8e8e4);
+  }
+
+  /* Nombre ocupa columna 1 fila 1 */
+  .rowFirst .colNombre {
     grid-column: 1;
+    grid-row: 1;
   }
 
-  .colTamaño {
-    grid-column: 1;
-  }
-
-  .colBolsa {
+  /* Categoría ocupa columna 2 fila 1 — a la derecha del nombre */
+  .rowFirst .colCategoria {
     grid-column: 2;
-    text-align: right;
+    grid-row: 1;
+    align-self: flex-start;
+    justify-content: flex-end;
   }
 
-  .colPrecio {
-    grid-column: 1;
-    text-align: left;
-  }
-
-  .colAccion {
-    grid-column: 2;
-  }
-
-  .rowContinuation {
+  /* Tamaño, Bolsa, Precio, Acción: se ocultan del rowFirst
+     porque se muestran en rowCont debajo */
+  .rowFirst .colTamaño,
+  .rowFirst .colBolsa,
+  .rowFirst .colPrecio,
+  .rowFirst .colAccion {
     display: none;
+  }
+
+  /* Filas de variante en móvil: fila horizontal compacta */
+  .rowCont {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr auto;
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 0 10px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-light, #f0f0ec);
+  }
+
+  .rowCont:last-child {
+    border-bottom: none;
+  }
+
+  /* Ocultar colNombre y colCategoria en filas de continuación móvil */
+  .rowCont .colNombre,
+  .rowCont .colCategoria {
+    display: none;
+  }
+
+  /* Re-posicionar columnas en grid móvil para rowCont */
+  .rowCont .colTamaño  { grid-column: 1; }
+  .rowCont .colBolsa   { grid-column: 2; }
+  .rowCont .colPrecio  { grid-column: 3; }
+  .rowCont .colAccion  { grid-column: 4; justify-content: flex-end; }
+
+  /* Para productos con UNA sola variante, el rowFirst también es la única fila
+     — mostramos tamaño/precio/acción en él */
+  .rowFirst:last-child {
+    border-bottom: none;
+  }
+
+  /* Caso especial: productGroup con solo rowFirst (una variante)
+     — los campos de variante deben ser visibles */
+  .productGroup .rowFirst:only-child {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+  }
+
+  .productGroup .rowFirst:only-child .colTamaño,
+  .productGroup .rowFirst:only-child .colBolsa,
+  .productGroup .rowFirst:only-child .colPrecio,
+  .productGroup .rowFirst:only-child .colAccion {
+    display: flex;
+  }
+
+  .productGroup .rowFirst:only-child .colTamaño { grid-column: 1; grid-row: 2; }
+  .productGroup .rowFirst:only-child .colBolsa  { grid-column: 1; grid-row: 3; }
+  .productGroup .rowFirst:only-child .colPrecio { grid-column: 2; grid-row: 2; justify-content: flex-end; }
+  .productGroup .rowFirst:only-child .colAccion { grid-column: 2; grid-row: 3; justify-content: flex-end; }
+
+  .rowWaBtnLabel {
+    display: none; /* en móvil solo ícono para ahorrar espacio */
+  }
+
+  .rowWaBtn {
+    padding: 7px 10px;
   }
 }

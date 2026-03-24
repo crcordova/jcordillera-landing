@@ -163,7 +163,7 @@ export default function Galeria({ items }) {
       <div className={styles.thumbStrip} role="list">
         {items.map((thumb, i) => (
           <button
-            key={thumb.id}
+            key={i}
             role="listitem"
             className={`${styles.thumb} ${i === current ? styles.thumbActive : ''}`}
             onClick={() => { goTo(i, i > current ? 'next' : 'prev'); startAuto(); }}

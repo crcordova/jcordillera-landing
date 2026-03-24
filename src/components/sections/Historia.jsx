@@ -27,8 +27,8 @@ const values = [
 ];
 
 const timeline = [
-  { year: '1955', event: 'Fundación del vivero en Ocoa por la familia Cordillera.' },
-  { year: '1980', event: 'Apertura de nuestra sede en Las Condes, Santiago.' },
+  { year: '1970', event: 'Fundación del vivero por Lucho Estay (el abuelo).' },
+  { year: '1991', event: 'Nace Marcos Fabian Estay' },
   { year: '2000', event: 'Segunda generación toma las riendas con nuevas variedades.' },
   { year: '2020', event: 'Tercera generación continúa la tradición con visión moderna.' },
 ];
@@ -64,10 +64,10 @@ export default function Historia() {
         <div className={`${styles.header} reveal`}>
           <span className="section-tag">Nuestra Historia</span>
           <h2 className="section-title">
-            Más de siete décadas<br />
+            Más de cinco décadas<br />
             <em>con las manos en la tierra</em>
           </h2>
-          <p className="section-intro">
+          <p className="section-intro" >
             Lo que comenzó como un sueño en las faldas de los Andes se convirtió en el vivero
             de referencia de Santiago. Tres generaciones, una misma pasión: cultivar vida.
           </p>
@@ -78,9 +78,8 @@ export default function Historia() {
           {/* Story text */}
           <div className={`${styles.storyText} reveal`}>
             <p>
-              En 1955, el abuelo Ramón plantó la primera semilla en Ocoa con una convicción simple:
-              que una planta bien cultivada tiene el poder de transformar un espacio y el ánimo de
-              quien la cuida. De ese humilde comienzo nació Jardín Cordillera.
+              Hace más de 70 años comenzó la historia de Jardín Cordillera, fundada por Luis Estay, 
+              jardinero de profesión y gran amante de las plantas. 
             </p>
             <p>
               Con los años, la familia fue creciendo junto al vivero. Cada hijo aprendió a leer la
@@ -89,15 +88,15 @@ export default function Historia() {
               heredamos y que hoy compartimos contigo.
             </p>
             <p>
-              Hoy somos tres generaciones trabajando juntas en Las Condes. Aquí encontrarás ese
-              trato cercano, esa honestidad que solo da el tiempo, y plantas que llegan a tu hogar
-              desde la misma montaña que les vio nacer.
+              Con el tiempo, su hijo Marcos Estay continuó desarrollando el vivero, ayudando a 
+              transformarlo en lo que es hoy. Actualmente la tradición sigue viva con una 
+              tercera generación dedicada al mismo oficio. 
             </p>
 
             <div className={styles.signatureBlock}>
               <div className={styles.signatureLine} />
               <p className={styles.signatureName}>La familia Cordillera</p>
-              <p className={styles.signatureRole}>Vivero desde 1955 · Ocoa, Chile</p>
+              <p className={styles.signatureRole}>Vivero desde 197X · Las Condes, Chile</p>
             </div>
           </div>
 

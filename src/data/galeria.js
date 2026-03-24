@@ -23,15 +23,15 @@ export const galeriaItems = [
     categoria: "Interior",
     emoji: "🌿",
   },
-  {
-    id: 2,
-    nombre: "Flores de Temporada",
-    descripcion:
-      "El color que le faltaba a tu jardín. Cada temporada trae nuevas variedades llenas de color y fragancia, cultivadas con cuidado artesanal.",
-    imagen: "",
-    categoria: "Flores",
-    emoji: "🌸",
-  },
+  // {
+  //   id: 2,
+  //   nombre: "Flores de Temporada",
+  //   descripcion:
+  //     "El color que le faltaba a tu jardín. Cada temporada trae nuevas variedades llenas de color y fragancia, cultivadas con cuidado artesanal.",
+  //   imagen: "",
+  //   categoria: "Flores",
+  //   emoji: "🌸",
+  // },
   {
     id: 3,
     nombre: "Suculentas y Cactus",

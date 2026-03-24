@@ -46,20 +46,19 @@ export default function Hero() {
         <p className={styles.subtitle}>Vivero con Tradición</p>
 
         <p className={styles.desc}>
-          Más de 70 años cultivando plantas con pasión desde Ocoa. Cada planta que
-          llega a tu hogar nace de manos que aman la tierra y conocen los secretos
-          de la naturaleza.
+          Más de 70 años cultivando belleza, conocimiento y amor por las plantas. 
+          Somos su vivero de confianza en Santiago, con la pasión de siempre y el saber que solo dan los años. 
         </p>
 
         {/* Stats */}
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <span className={styles.statNum}>70+</span>
+            <span className={styles.statNum}>50+</span>
             <span className={styles.statLabel}>Años de historia</span>
           </div>
           <div className={styles.statDivider} aria-hidden="true" />
           <div className={styles.stat}>
-            <span className={styles.statNum}>300+</span>
+            <span className={styles.statNum}>200+</span>
             <span className={styles.statLabel}>Variedades</span>
           </div>
           <div className={styles.statDivider} aria-hidden="true" />
@@ -84,7 +83,7 @@ export default function Hero() {
       {/* Scroll hint */}
       <a href="#nosotros" className={styles.scrollHint} aria-label="Ir a la siguiente sección">
         <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>Scroll</span>
+        <span className={styles.scrollText}></span>
       </a>
     </section>
   );

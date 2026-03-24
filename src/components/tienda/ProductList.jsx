@@ -4,8 +4,8 @@ import styles from './ProductList.module.css';
 export default function ProductList({ productos, categorias }) {
   return (
     <div className={styles.list}>
-      {/* Table header */}
-      <div className={styles.tableHeader}>
+      {/* Table header — hidden on mobile */}
+      <div className={styles.tableHeader} aria-hidden="true">
         <span className={styles.colNombre}>Planta</span>
         <span className={styles.colCategoria}>Categoría</span>
         <span className={styles.colTamaño}>Tamaño</span>
@@ -14,76 +14,88 @@ export default function ProductList({ productos, categorias }) {
         <span className={styles.colAccion}>Consultar</span>
       </div>
 
-      {/* Rows grouped by product */}
+      {/* Product rows */}
       <div className={styles.rows}>
         {productos.map((producto, pi) => {
           const cat = categorias[producto.categoria];
-          return producto.variantes.map((variante, vi) => (
+          return (
             <div
-              key={`${producto.id}-${variante.tamaño}`}
-              className={`${styles.row} ${vi === 0 ? styles.rowFirst : styles.rowCont}`}
+              key={producto.id}
+              className={styles.productGroup}
               style={{ animationDelay: `${Math.min(pi * 0.04, 0.4)}s` }}
             >
-              {/* Nombre + sci (only on first variant) */}
-              <div className={styles.colNombre}>
-                {vi === 0 ? (
-                  <>
-                    {producto.destacado && (
-                      <span className={styles.starIcon} title="Destacado" aria-label="Destacado">✦</span>
-                    )}
-                    <div>
-                      <p className={styles.rowNombre}>{producto.nombre}</p>
-                      <p className={styles.rowSci}>{producto.nombreCientifico}</p>
-                    </div>
-                  </>
-                ) : (
-                  /* Continuation rows just show indent */
-                  <span className={styles.rowContinuation} aria-hidden="true">└</span>
-                )}
-              </div>
-
-              {/* Category (only on first variant) */}
-              <div className={styles.colCategoria}>
-                {vi === 0 && cat ? (
-                  <span
-                    className={styles.rowCatBadge}
-                    style={{ background: cat.color, color: cat.textColor }}
-                  >
-                    {cat.label}
-                  </span>
-                ) : null}
-              </div>
-
-              {/* Tamaño */}
-              <div className={styles.colTamaño}>
-                <span className={styles.rowTamaño}>{variante.tamaño}</span>
-              </div>
-
-              {/* Bolsa */}
-              <div className={styles.colBolsa}>
-                <span className={styles.rowBolsa}>{variante.bolsa}</span>
-              </div>
-
-              {/* Precio */}
-              <div className={styles.colPrecio}>
-                <span className={styles.rowPrecio}>{formatPrecio(variante.precio)}</span>
-              </div>
-
-              {/* WhatsApp CTA */}
-              <div className={styles.colAccion}>
-                <a
-                  href={getWhatsAppUrl(producto, variante)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.rowWaBtn}
-                  aria-label={`Consultar ${producto.nombre} ${variante.tamaño} por WhatsApp`}
+              {producto.variantes.map((variante, vi) => (
+                <div
+                  key={`${producto.id}-${variante.tamaño}`}
+                  className={`${styles.row} ${vi === 0 ? styles.rowFirst : styles.rowCont}`}
                 >
-                  <WhatsAppIcon />
-                  <span className={styles.rowWaBtnLabel}>Consultar</span>
-                </a>
-              </div>
+                  {/* Nombre + sci — siempre visible en primera variante */}
+                  <div className={styles.colNombre}>
+                    {vi === 0 ? (
+                      <div className={styles.nombreWrapper}>
+                        {producto.destacado && (
+                          <span className={styles.starIcon} title="Destacado" aria-label="Destacado">
+                            ✦
+                          </span>
+                        )}
+                        <div className={styles.nombreTextos}>
+                          <p className={styles.rowNombre}>{producto.nombre}</p>
+                          <p className={styles.rowSci}>{producto.nombreCientifico}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Filas de continuación: nombre en gris tenue para mantener ancho */
+                      <div className={styles.nombreWrapper}>
+                        <span className={styles.rowContinuation} aria-hidden="true">└</span>
+                        <p className={styles.rowNombreCont}>{producto.nombre}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Categoría — solo en primera variante */}
+                  <div className={styles.colCategoria}>
+                    {vi === 0 && cat ? (
+                      <span
+                        className={styles.rowCatBadge}
+                        style={{ background: cat.color, color: cat.textColor }}
+                      >
+                        {cat.label}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  {/* Tamaño */}
+                  <div className={styles.colTamaño}>
+                    <span className={styles.rowTamaño}>{variante.tamaño}</span>
+                  </div>
+
+                  {/* Bolsa */}
+                  <div className={styles.colBolsa}>
+                    <span className={styles.rowBolsa}>{variante.bolsa}</span>
+                  </div>
+
+                  {/* Precio */}
+                  <div className={styles.colPrecio}>
+                    <span className={styles.rowPrecio}>{formatPrecio(variante.precio)}</span>
+                  </div>
+
+                  {/* WhatsApp CTA */}
+                  <div className={styles.colAccion}>
+                    <a
+                      href={getWhatsAppUrl(producto, variante)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.rowWaBtn}
+                      aria-label={`Consultar ${producto.nombre} ${variante.tamaño} por WhatsApp`}
+                    >
+                      <WhatsAppIcon />
+                      <span className={styles.rowWaBtnLabel}>Consultar</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
-          ));
+          );
         })}
       </div>
     </div>
