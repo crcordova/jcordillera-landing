@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
@@ -9,7 +10,9 @@ export default function TiendaPage() {
     <>
       <Navbar />
       <main>
-        <TiendaClient productos={productos} categorias={CATEGORIAS} />
+        <Suspense fallback={null}>
+          <TiendaClient productos={productos} categorias={CATEGORIAS} />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppFloat />
