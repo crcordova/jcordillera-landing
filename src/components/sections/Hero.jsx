@@ -36,29 +36,28 @@ export default function Hero() {
 
       {/* Content */}
       <div className={styles.content}>
-        <span className={styles.badge}>✦ Desde 1955 · Las Condes, Santiago ✦</span>
+        <span className={styles.badge}>✦ Desde 1966 · Las Condes, Santiago ✦</span>
 
         <h1 className={styles.title}>
           Jardín<br />
           <em>Cordillera</em>
         </h1>
 
-        <p className={styles.subtitle}>Vivero con Tradición</p>
+        <p className={styles.subtitle}>Vivero Productor</p>
 
         <p className={styles.desc}>
-          Más de 70 años cultivando belleza, conocimiento y amor por las plantas. 
-          Somos su vivero de confianza en Santiago, con la pasión de siempre y el saber que solo dan los años. 
+            Producimos plantas sanas y fuertes, gracias a nuestra experiencia y a un entorno natural privilegiado.
         </p>
 
         {/* Stats */}
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <span className={styles.statNum}>50+</span>
+            <span className={styles.statNum}>60+</span>
             <span className={styles.statLabel}>Años de historia</span>
           </div>
           <div className={styles.statDivider} aria-hidden="true" />
           <div className={styles.stat}>
-            <span className={styles.statNum}>200+</span>
+            <span className={styles.statNum}>120+</span>
             <span className={styles.statLabel}>Variedades</span>
           </div>
           <div className={styles.statDivider} aria-hidden="true" />
@@ -70,12 +69,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className={styles.ctas}>
-          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaWhatsapp}>
+          {/* <a href={WA_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaWhatsapp}>
             <WhatsAppIcon />
             Escríbenos por WhatsApp
-          </a>
-          <a href="#galeria" className={styles.ctaSecondary}>
-            Ver galería →
+          </a> */}
+          <a href="/tienda" className={styles.ctaSecondary}>
+            Ver Catalogo →
           </a>
         </div>
       </div>

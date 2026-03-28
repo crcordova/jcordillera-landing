@@ -13,8 +13,8 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Historia />
         <Galeria items={galeriaItems} />
+        <Historia />
         <Contacto />
       </main>
       <Footer />

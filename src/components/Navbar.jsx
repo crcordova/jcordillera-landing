@@ -5,8 +5,8 @@ import styles from './Navbar.module.css';
 
 const navLinks = [
   { href: '/#hero',      label: 'Inicio' },
-  { href: '/#nosotros',  label: 'Historia' },
   { href: '/#galeria',   label: 'Galería' },
+  { href: '/#nosotros',  label: 'Historia' },
   { href: '/tienda',     label: 'Tienda'},
   { href: '/#contacto',  label: 'Contacto' },
 ];
@@ -36,7 +36,7 @@ export default function Navbar() {
           <span className={styles.logoLeaf}>🌿</span>
           <span className={styles.logoText}>
             <span className={styles.logoName}>Jardín Cordillera</span>
-            <span className={styles.logoSub}>Vivero con Tradición</span>
+            <span className={styles.logoSub}>Vivero Productor</span>
           </span>
         </a>
 

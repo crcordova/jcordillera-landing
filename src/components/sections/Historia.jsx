@@ -7,22 +7,22 @@ const values = [
   {
     emoji: '🌿',
     title: 'Conocimiento experto',
-    desc: 'Más de 70 años nos avalan. Te asesoramos con honestidad y experiencia real de campo.',
+    desc: 'Más de 60 años de experiencia guiando cada etapa del cultivo.',
   },
   {
     emoji: '🤝',
     title: 'Trato familiar',
-    desc: 'Cada cliente es parte de nuestra historia. Te conocemos por tu nombre, no por tu número.',
+    desc: 'Entendemos tus necesidades, entregamos una atencion cercana y personalizada en cada visita.',
   },
   {
     emoji: '🏆',
     title: 'Calidad garantizada',
-    desc: 'Seleccionamos nuestras plantas con criterio artesanal. Si no es buena, no sale del vivero.',
+    desc: 'Cultivamos nuestras plantas desde el origen, asegurando su desarrollo óptimo.',
   },
   {
     emoji: '🏔️',
     title: 'Raíces en Ocoa',
-    desc: 'Desde la montaña nacen las mejores plantas para Santiago. Ese origen es nuestro orgullo.',
+    desc: 'Producimos en un valle privilegiado, ideal para plantas sanas y fuertes.',
   },
 ];
 
@@ -64,12 +64,11 @@ export default function Historia() {
         <div className={`${styles.header} reveal`}>
           <span className="section-tag">Nuestra Historia</span>
           <h2 className="section-title">
-            Más de cinco décadas<br />
+            Más de seis décadas<br />
             <em>con las manos en la tierra</em>
           </h2>
           <p className="section-intro" >
-            Lo que comenzó como un sueño en las faldas de los Andes se convirtió en el vivero
-            de referencia de Santiago. Tres generaciones, una misma pasión: cultivar vida.
+            Tradición familiar y producción propia de plantas ornamentales.
           </p>
         </div>
 
@@ -78,39 +77,39 @@ export default function Historia() {
           {/* Story text */}
           <div className={`${styles.storyText} reveal`}>
             <p>
-              Hace más de 70 años comenzó la historia de Jardín Cordillera, fundada por Luis Estay, 
-              jardinero de profesión y gran amante de las plantas. 
-            </p>
-            <p>
-              Con los años, la familia fue creciendo junto al vivero. Cada hijo aprendió a leer la
-              tierra, a reconocer cuándo una planta necesita sol o sombra, agua o descanso. Ese
-              saber, que no se estudia en ninguna universidad, es el verdadero tesoro que
-              heredamos y que hoy compartimos contigo.
+              Hace más de 60 años comenzó la historia de Jardín Cordillera, fundada por Luis Estay, 
+              jardinero de profesión y gran amante de las plantas.
             </p>
             <p>
               Con el tiempo, su hijo Marcos Estay continuó desarrollando el vivero, ayudando a 
-              transformarlo en lo que es hoy. Actualmente la tradición sigue viva con una 
-              tercera generación dedicada al mismo oficio. 
+              transformarlo en lo que es hoy. Actualmente la tradición sigue viva con una tercera 
+              generación dedicada al mismo oficio.
+            </p>
+            <p>
+              Hoy somos un vivero productor, donde cultivamos nuestras propias especies con 
+              dedicación y experiencia en Ocoa, un valle reconocido por sus suelos fértiles y 
+              excelentes condiciones para el cultivo.
+            </p>
+            <p>
+              Más de 60 años cultivando plantas y tradición familiar.
             </p>
 
             <div className={styles.signatureBlock}>
               <div className={styles.signatureLine} />
               <p className={styles.signatureName}>La familia Cordillera</p>
-              <p className={styles.signatureRole}>Vivero desde 197X · Las Condes, Chile</p>
+              <p className={styles.signatureRole}>Vivero desde 1966 · Las Condes, Chile</p>
             </div>
           </div>
 
           {/* Timeline */}
-          <div className={`${styles.timeline} reveal`}>
-            {timeline.map((item, i) => (
-              <div key={item.year} className={styles.timelineItem} style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className={styles.timelineDot} />
-                <div className={styles.timelineContent}>
-                  <span className={styles.timelineYear}>{item.year}</span>
-                  <p className={styles.timelineEvent}>{item.event}</p>
-                </div>
-              </div>
-            ))}
+          {/* Founder image */}
+          <div className={`${styles.founderImageWrapper} reveal`}>
+            <img
+              src="/images/abuelo-jardin.png"
+              alt="Luis Estay, fundador de Jardín Cordillera"
+              className={styles.founderImage}
+            />
+            <p className={styles.founderCaption}>Luis Estay · Fundador · ~1966</p>
           </div>
         </div>
 

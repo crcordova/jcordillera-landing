@@ -44,9 +44,9 @@
 .storyGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 3rem;
   margin-bottom: 5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .storyText {
@@ -189,6 +189,34 @@
   color: var(--texto-suave);
   line-height: 1.75;
   font-weight: 300;
+}
+
+/* Contenedor de la imagen del fundador */
+.founderImageWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* La imagen ocupa toda la altura del texto de la izquierda */
+.founderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* recorta sin deformar */
+  object-position: top;      /* prioriza la cara/parte superior */
+  border-radius: 4px;
+  display: block;
+  filter: sepia(20%);        /* toque vintage sutil, quítalo si no va con tu paleta */
+}
+
+/* Pie de foto discreto */
+.founderCaption {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+  text-align: center;
 }
 
 /* ── Responsive ── */

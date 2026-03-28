@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import styles from './Galeria.module.css';
+import Link from 'next/link'
 
 export default function Galeria({ items }) {
   const [current, setCurrent]       = useState(0);
@@ -122,7 +123,12 @@ export default function Galeria({ items }) {
               <div className={styles.dividerLine} aria-hidden="true" />
 
               <p className={styles.itemDesc}>{item.descripcion}</p>
-
+              <Link
+                href={`/tienda?categoria=${encodeURIComponent(item.categoria)}`}
+                className={styles.ctaBtn}
+              >
+                Ver {item.nombre} en tienda →
+              </Link>
               {/* Dot navigation */}
               <div className={styles.dots} role="tablist" aria-label="Navegación de galería">
                 {items.map((_, i) => (

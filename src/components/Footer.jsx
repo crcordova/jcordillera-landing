@@ -30,11 +30,11 @@ export default function Footer() {
             <span className={styles.brandLeaf}>🌿</span>
             <div>
               <p className={styles.brandName}>Jardín Cordillera</p>
-              <p className={styles.brandTag}>Vivero con Tradición · Santiago, Chile</p>
+              <p className={styles.brandTag}>Vivero Productor · Santiago, Chile</p>
             </div>
           </div>
           <p className={styles.brandDesc}>
-            Más de 70 años cultivando plantas con amor y dedicación desde Ocoa hasta tu hogar.
+            Más de 60 años cultivando plantas con amor y dedicación desde Ocoa hasta tu hogar.
           </p>
         </div>
 

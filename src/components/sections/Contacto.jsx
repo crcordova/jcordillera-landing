@@ -15,30 +15,6 @@ const WA_VISIT   = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 const WA_CONSULT = `https://wa.me/${WA_NUMBER}?text=Hola%2C%20necesito%20asesor%C3%ADa%20sobre%20plantas%20para%20mi%20espacio%20`;
 const WA_ORDER   = `https://wa.me/${WA_NUMBER}?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20de%20plantas`;
 
-const ctaCards = [
-  {
-    emoji: '📍',
-    title: 'Visitar el vivero',
-    desc: 'Cuéntanos que quieres venir y te damos toda la información para llegar.',
-    href: WA_VISIT,
-    label: 'Coordinar visita',
-  },
-  {
-    emoji: '🌿',
-    title: 'Pedir asesoría',
-    desc: 'Te ayudamos a elegir la planta perfecta para tu hogar, jardín u oficina.',
-    href: WA_CONSULT,
-    label: 'Consultar ahora',
-    featured: true,
-  },
-  {
-    emoji: '🛒',
-    title: 'Hacer un pedido',
-    desc: '¿Ya sabes qué quieres? Coordina tu pedido directamente por WhatsApp.',
-    href: WA_ORDER,
-    label: 'Hacer pedido',
-  },
-];
 
 const infoItems = [
   {
@@ -97,33 +73,9 @@ export default function Contacto() {
           <h2 className={styles.title}>
             Ven a <em>visitarnos</em>
           </h2>
-          <p className={styles.intro}>
-            Estamos aquí para ayudarte. Ya sea que busques una planta específica,
-            asesoría para tu jardín o simplemente quieras conocer el vivero —
-            con gusto te atendemos.
-          </p>
+
         </div>
 
-        {/* ── CTA Cards ── */}
-        <div className={`${styles.ctaGrid} reveal`}>
-          {ctaCards.map((card) => (
-            <a
-              key={card.title}
-              href={card.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.ctaCard} ${card.featured ? styles.ctaFeatured : ''}`}
-            >
-              <span className={styles.ctaEmoji} aria-hidden="true">{card.emoji}</span>
-              <h3 className={styles.ctaTitle}>{card.title}</h3>
-              <p className={styles.ctaDesc}>{card.desc}</p>
-              <span className={styles.ctaBtn}>
-                <WhatsAppIcon />
-                {card.label}
-              </span>
-            </a>
-          ))}
-        </div>
 
         {/* ── Info + Map row ── */}
         <div className={styles.infoMapRow}>

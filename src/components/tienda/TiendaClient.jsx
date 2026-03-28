@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import TiendaHeader from './TiendaHeader';
 import FiltroBar from './FiltroBar';
 import ProductGrid from './ProductGrid';
@@ -8,19 +9,33 @@ import ProductList from './ProductList';
 import styles from './TiendaClient.module.css';
 
 export default function TiendaClient({ productos, categorias }) {
-  const [vista, setVista]         = useState('mosaico'); // 'mosaico' | 'lista'
+  const [vista, setVista]         = useState('lista'); // 'mosaico' | 'lista'
   const [categoria, setCategoria] = useState('all');
   const [busqueda, setBusqueda]   = useState('');
 
+  // ── Leer ?categoria= de la URL al montar ──
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const cat = searchParams.get('categoria');
+     console.log('📌 param URL:', cat);
+     console.log('📌 keys disponibles:', Object.entries(categorias).map(([k, v]) => ({ key: k, label: v.label })));
+
+    if (cat) {
+      const match = Object.entries(categorias).find(
+        ([, v]) => v.label.toLowerCase() === cat.toLowerCase()
+      );
+      if (match) setCategoria(match[0]);
+    }
+  }, []);
+
+  // ── Filtrar productos ──
   const filtrados = useMemo(() => {
     let result = productos;
 
-    // Filtrar por categoría
     if (categoria !== 'all') {
       result = result.filter((p) => p.categoria === categoria);
     }
 
-    // Filtrar por búsqueda
     if (busqueda.trim()) {
       const q = busqueda.toLowerCase();
       result = result.filter(
@@ -31,7 +46,6 @@ export default function TiendaClient({ productos, categorias }) {
       );
     }
 
-    // Destacados primero
     return [...result].sort((a, b) => (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0));
   }, [productos, categoria, busqueda]);
 
@@ -57,11 +71,15 @@ export default function TiendaClient({ productos, categorias }) {
       {/* Product display */}
       <div className={styles.content}>
         {filtrados.length === 0 ? (
-          <EmptyState busqueda={busqueda} categoria={categoria} onReset={() => { setCategoria('all'); setBusqueda(''); }} />
-        ) : vista === 'mosaico' ? (
-          <ProductGrid productos={filtrados} categorias={categorias} />
-        ) : (
+          <EmptyState
+            busqueda={busqueda}
+            categoria={categoria}
+            onReset={() => { setCategoria('all'); setBusqueda(''); }}
+          />
+        ) : vista === 'lista' ? (
           <ProductList productos={filtrados} categorias={categorias} />
+        ) : (
+          <ProductGrid productos={filtrados} categorias={categorias} />
         )}
       </div>
     </div>
