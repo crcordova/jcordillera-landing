@@ -208,6 +208,12 @@
   background: #1ebe5c;
 }
 
+.brandLeaf {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .links,

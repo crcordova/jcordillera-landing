@@ -18,8 +18,8 @@ export const galeriaItems = [
     id: 1,
     nombre: "Arbustos",
     descripcion:
-      "Transforma tus espacios con vida. Tenemos una amplia selección de plantas que prosperan bajo techo, perfectas para departamentos y oficinas.",
-    imagen: "",
+      "Plantas leñosas de porte medio que estructuran el jardín, crean setos y pantallas visuales, y aportan floración y follaje durante todo el año para delimitar espacios y reducir el viento.",
+    imagen: "/images/arbusto_galeria.png",
     categoria: "Arbustos",
     emoji: "🌿",
   },
@@ -27,8 +27,8 @@ export const galeriaItems = [
     id: 3,
     nombre: "Árboles",
     descripcion:
-      "Las bases de un jardín memorable. Desde frondosos árboles nativos hasta arbustos ornamentales, tenemos lo que tu espacio exterior necesita.",
-    imagen: "",
+      "Plantas de gran porte que aportan sombra, estructura y escala al jardín; sus copas moderan el clima, definen caminos y plazas, y ofrecen floración, color otoñal o interés estacional según la especie.",
+    imagen: "/images/arbol_galeria.jpg",
     categoria: "Árboles",
     emoji: "🌳",
   },
@@ -36,8 +36,8 @@ export const galeriaItems = [
     id: 4,
     nombre: "Trepadoras",
     descripcion:
-      "Creamos jardines desde Ocoa hasta Santiago. Asesoría personalizada para diseñar el espacio verde de tus sueños con plantas de calidad garantizada.",
-    imagen: "",
+      "Plantas que escalan muros, pérgolas y enrejados para cubrir superficies verticales, crear privacidad y añadir perfume o interés ornamental; además estabilizan taludes y pueden servir de soporte para fauna.",
+    imagen: "/images/trepadora_galeria.jpg",
     categoria: "Trepadoras",
     emoji: "🏡",
   },
@@ -45,8 +45,8 @@ export const galeriaItems = [
     id: 5,
     nombre: "Cubresuelos",
     descripcion:
-      "Lleva el aroma de la huerta a tu cocina. Albahaca, romero, lavanda y muchas más. Cultivadas orgánicamente en nuestro vivero de Ocoa.",
-    imagen: "",
+      "Plantas bajas y rastreras que cubren el suelo para controlar la erosión, suprimir malas hierbas y unir parterres; además mejoran la retención de humedad y crean alfombras florales o de follaje.",
+    imagen: "/images/cubresuelo_galeria.jpg",
     categoria: "Cubresue­lo",
     emoji: "🌱",
   },

@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import Image from 'next/image';
 
 const WA_NUMBER  = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER  || '56987686499';
 const WA_MESSAGE = process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE || 'Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20Jard%C3%ADn%20Cordillera';
@@ -27,7 +28,13 @@ export default function Footer() {
         {/* Brand */}
         <div className={styles.brand}>
           <div className={styles.brandLogo}>
-            <span className={styles.brandLeaf}>🌿</span>
+            <Image
+              src="/images/logo.png"
+              alt="Jardín Cordillera"
+              width={48}
+              height={48}
+              className={styles.brandLeaf}
+            />
             <div>
               <p className={styles.brandName}>Jardín Cordillera</p>
               <p className={styles.brandTag}>Vivero Productor · Santiago, Chile</p>

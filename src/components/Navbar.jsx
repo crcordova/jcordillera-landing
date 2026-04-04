@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/#hero',      label: 'Inicio' },
@@ -33,7 +34,13 @@ export default function Navbar() {
 
         {/* Logo */}
         <a href="#hero" className={styles.logo} onClick={handleLinkClick}>
-          <span className={styles.logoLeaf}>🌿</span>
+          <Image
+            src="/images/logo.png"
+            alt="Jardín Cordillera"
+            width={40}
+            height={40}
+            className={styles.logoLeaf}
+          />
           <span className={styles.logoText}>
             <span className={styles.logoName}>Jardín Cordillera</span>
             <span className={styles.logoSub}>Vivero Productor</span>
