@@ -59,6 +59,7 @@ Google usa varios prefijos; solo uno nos sirve:
 |---|---|---|
 | **`G-XXXXXXXXXX`** | Measurement ID de **GA4** (la propiedad de analytics) | ✅ **SÍ** — es el único valor que va en `NEXT_PUBLIC_GA_ID` |
 | **`AW-XXXXXXXXXX`** | ID de cuenta/conversión de **Google Ads**. Ads lo muestra con un snippet de "instalación manual" al crear campañas o conversiones **cuando no hay GA4 vinculado todavía** | ❌ NO — se ignora: la medición de la campaña llega **importada desde GA4** (ver `06` → Paso 2 y FAQ) |
+| **`GT-XXXXXXXX`** | ID del **"Google Tag" unificado** (aparece en la pantalla de instalación del tag en GA4 y en tagmanager.google.com). Solo envía datos a GA4 si ese tag quedó vinculado a la propiedad | ❌ NO por defecto — usar el `G-` de la misma pantalla. Si solo ves un `GT-`, estás en la pantalla del Google Tag: el `G-` está en **Admin → Flujos de datos → tu flujo web → "Measurement ID"** |
 | **`GTM-XXXXXX`** | Contenedor de **Google Tag Manager** | ❌ NO — este proyecto no usa GTM |
 
 > El snippet `AW-...` que muestra Ads durante la creación de la campaña NO se

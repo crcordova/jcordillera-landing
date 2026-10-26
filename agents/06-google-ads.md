@@ -76,6 +76,8 @@ el Paso 1 de este doc). Qué hacer:
    **eliminarla** al terminar el Paso 2 — dos conversiones midiendo lo mismo
    ensucian los reportes.
 3. El único ID que el sitio necesita es el **`G-` de GA4** (ver `03` → Paso 1).
+   Ni el `AW-` de Ads ni el `GT-` del "Google Tag" unificado: el `G-` es el
+   que garantiza que los datos caigan en la propiedad GA4 correcta.
 
 **"¿Puedo lanzar la campaña ya y medir después?"**
 
