@@ -51,6 +51,20 @@ página? ¿Qué botones funcionan?**
 5. Anota el **ID de medición** (Measurement ID), formato **`G-XXXXXXXXXX`**
    (visible en la pantalla del flujo o en Admin → Flujos de datos).
 
+### ¿G-, AW- o GTM-? — cuál es cuál (no confundir IDs)
+
+Google usa varios prefijos; solo uno nos sirve:
+
+| Prefijo | Qué es | ¿Lo usamos? |
+|---|---|---|
+| **`G-XXXXXXXXXX`** | Measurement ID de **GA4** (la propiedad de analytics) | ✅ **SÍ** — es el único valor que va en `NEXT_PUBLIC_GA_ID` |
+| **`AW-XXXXXXXXXX`** | ID de cuenta/conversión de **Google Ads**. Ads lo muestra con un snippet de "instalación manual" al crear campañas o conversiones **cuando no hay GA4 vinculado todavía** | ❌ NO — se ignora: la medición de la campaña llega **importada desde GA4** (ver `06` → Paso 2 y FAQ) |
+| **`GTM-XXXXXX`** | Contenedor de **Google Tag Manager** | ❌ NO — este proyecto no usa GTM |
+
+> El snippet `AW-...` que muestra Ads durante la creación de la campaña NO se
+> pega en el sitio ni en Vercel: los tags del proyecto se gestionan por
+> variables de entorno. Ver FAQ en `06-google-ads.md`.
+
 ### 2. Configuración recomendada de la propiedad
 
 En **Admin**:

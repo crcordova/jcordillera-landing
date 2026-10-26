@@ -59,6 +59,30 @@
 Una conversación de las 10:00 puede aparecer en Ads pasadas las 13:00 — es
 normal, no reparear la campaña el día 1 por "0 conversiones".
 
+### ❓ FAQ durante la creación de la campaña
+
+**"Me aparece una *instalación manual* con un código `<script>` y un ID `AW-XXXXXXXXXX` — ¿qué es?"**
+
+Es el **tag de conversión de Google Ads**: Ads lo ofrece cuando creas una
+campaña o conversión **sin tener GA4 vinculado** (nuestro caso hasta completar
+el Paso 1 de este doc). Qué hacer:
+
+1. **No instalar nada manualmente** — no pegar ese código en el sitio ni en
+   Vercel. Los tags del proyecto se gestionan por variables de entorno
+   (`NEXT_PUBLIC_GA_ID`, ver `03`), y la conversión de Ads llega **importada
+   desde GA4**, no por ese código.
+2. Si el asistente ya creó esa "acción de conversión" en la cuenta
+   (aparece en Objetivos → Conversiones, con ID `AW-...`), dejarla sin usar y
+   **eliminarla** al terminar el Paso 2 — dos conversiones midiendo lo mismo
+   ensucian los reportes.
+3. El único ID que el sitio necesita es el **`G-` de GA4** (ver `03` → Paso 1).
+
+**"¿Puedo lanzar la campaña ya y medir después?"**
+
+Puedes dejarla creada y **pausada** — no pierde nada. Lanzarla activa sin GA4
+significa clics pagados sin conversión medida (Advertencia 1). Encender GA4
+toma ~15 min siguiendo `03`.
+
 ---
 
 ## Paso 3 — Estructura de campaña recomendada (vivero local)
