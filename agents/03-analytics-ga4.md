@@ -1,9 +1,12 @@
 # 03 — Google Analytics 4 + Search Console (guía de activación)
 
-> **Estado**: el código ya está listo y deployado en espera de tu cuenta.
-> No hay nada más que programar: activar es 100% configuración en webs de
-> Google + variables de entorno en Vercel. Esta guía asume que todavía
-> **no tienes la cuenta Google configurada**.
+> **Estado (2026-10-26)**: ✅ **GA4 ya está ACTIVO en producción** — propiedad
+> "Jardín Cordillera — Web", Measurement ID **`G-6XJB1J5EQR`**, seteado en
+> Vercel (Production + Preview) y verificada la carga del script en
+> https://www.jardincordillera.cl (home y /tienda).
+> Quedan por hacer los pasos de panel: marcar `click_whatsapp` como evento
+> clave, subir retención a 14 meses, Search Console (§ abajo) y vincular con
+> Ads (ver `06`). Esta guía queda como referencia completa.
 
 ---
 

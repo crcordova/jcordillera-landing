@@ -44,7 +44,7 @@ cayendo a **WhatsApp**.
 - [x] Metadata propia de `/tienda` con canonical
 - [x] Datos estructurados JSON-LD: `GardenStore` + `WebSite` (`src/components/seo/JsonLd.jsx`)
 - [x] Fuente única de verdad del negocio: `src/data/sitio.js`
-- [x] GA4 listo para activar: `src/components/seo/GoogleAnalytics.jsx` (solo falta `NEXT_PUBLIC_GA_ID`)
+- [x] GA4 **activo en producción**: `G-6XJB1J5EQR` (seteado en Vercel — Production y Preview — 2026-10-26)
 - [x] Tracking de clicks a WhatsApp: `src/components/seo/WhatsAppTracker.jsx` (evento `click_whatsapp`)
 - [x] `public/llms.txt` para crawlers de IA (GEO)
 - [x] Favicon corregido (`/logo.ico` — antes apuntaba a `/favicon.ico` inexistente)
@@ -60,7 +60,7 @@ cayendo a **WhatsApp**.
 - [ ] Sección landing "Por qué hacer un jardín"
 - [x] ~~Definir dominio propio y setear `NEXT_PUBLIC_SITE_URL`~~ → **hecho 2026-10-26**: `https://www.jardincordillera.cl` (env local + Vercel + redeploy)
 - [ ] Search Console: verificación + envío de sitemap (ver `03`) — requiere la cuenta Google que el dueño está creando
-- [ ] Campaña Google Ads — el dueño la está configurando ahora (guía completa en `06-google-ads.md`; lanzar solo después de activar GA4 en producción)
+- [ ] Campaña Google Ads — creada por el dueño (pausada); guía completa en `06-google-ads.md`. Faltan: marcar `click_whatsapp` como evento clave → vincular GA4↔Ads → importar conversión → lanzar
 
 ### ⬜ P2 — Mediano plazo
 

@@ -234,7 +234,7 @@ const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Mi mensaje �
 ### SEO / Analytics (implementado 2026-10-26)
 - [x] Metadata completa (metadataBase, canonical, OpenGraph, Twitter card) en layout raíz y /tienda
 - [x] JSON-LD: `GardenStore` + `WebSite` (`src/components/seo/JsonLd.jsx`)
-- [x] GA4 listo para activar — falta solo `NEXT_PUBLIC_GA_ID` (guía: `agents/03-analytics-ga4.md`)
+- [x] GA4 activo en producción — `NEXT_PUBLIC_GA_ID=G-6XJB1J5EQR` (seteado en Vercel 2026-10-26)
 - [x] Evento `click_whatsapp` en GA4 para todos los CTAs de WhatsApp
 - [x] `public/llms.txt` para crawlers de IA
 
