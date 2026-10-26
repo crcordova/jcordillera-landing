@@ -28,7 +28,7 @@ export const CATEGORIAS = {
   arbusto:    { label: 'Arbustos',    color: '#e0eed8', textColor: '#253d20' },
   arbol:      { label: 'Árboles',     color: '#d4ecd4', textColor: '#1a4a1a' },
   trepadora:  { label: 'Trepadoras',  color: '#f5ecd8', textColor: '#6b3a10' },
-  cubresuelo: { label: 'Cubresue­lo', color: '#e8f0f8', textColor: '#1a3a6b' },
+  cubresuelo: { label: 'Cubresuelo', color: '#e8f0f8', textColor: '#1a3a6b' },
 };
 
 /** Formatea precio CLP → "$14.500" */
@@ -1691,7 +1691,7 @@ export const productos = [
     ],
   },
 
-  // ── CUBRESUE­LOS ─────────────────────────────────────────────────
+  // ── CUBRESUELOS ─────────────────────────────────────────────────
 
   {
     id: 'cotula',

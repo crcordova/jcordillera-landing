@@ -47,7 +47,7 @@ export const galeriaItems = [
     descripcion:
       "Plantas bajas y rastreras que cubren el suelo para controlar la erosión, suprimir malas hierbas y unir parterres; además mejoran la retención de humedad y crean alfombras florales o de follaje.",
     imagen: "/images/cubresuelo_galeria.jpg",
-    categoria: "Cubresue­lo",
+    categoria: "Cubresuelo",
     emoji: "🌱",
   },
 ];

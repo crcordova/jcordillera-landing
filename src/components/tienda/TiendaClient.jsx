@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import TiendaHeader from './TiendaHeader';
 import FiltroBar from './FiltroBar';
@@ -10,23 +10,18 @@ import styles from './TiendaClient.module.css';
 
 export default function TiendaClient({ productos, categorias }) {
   const [vista, setVista]         = useState('lista'); // 'mosaico' | 'lista'
-  const [categoria, setCategoria] = useState('all');
-  const [busqueda, setBusqueda]   = useState('');
-
-  // ── Leer ?categoria= de la URL al montar ──
   const searchParams = useSearchParams();
-  useEffect(() => {
-    const cat = searchParams.get('categoria');
-     console.log('📌 param URL:', cat);
-     console.log('📌 keys disponibles:', Object.entries(categorias).map(([k, v]) => ({ key: k, label: v.label })));
 
-    if (cat) {
-      const match = Object.entries(categorias).find(
-        ([, v]) => v.label.toLowerCase() === cat.toLowerCase()
-      );
-      if (match) setCategoria(match[0]);
-    }
-  }, []);
+  // ── Leer ?categoria= de la URL (lazy init — sin effect) ──
+  const [categoria, setCategoria] = useState(() => {
+    const cat = searchParams.get('categoria');
+    if (!cat) return 'all';
+    const match = Object.entries(categorias).find(
+      ([, v]) => v.label.toLowerCase() === cat.toLowerCase()
+    );
+    return match ? match[0] : 'all';
+  });
+  const [busqueda, setBusqueda]   = useState('');
 
   // ── Filtrar productos ──
   const filtrados = useMemo(() => {

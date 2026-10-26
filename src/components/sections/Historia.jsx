@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import styles from './Historia.module.css';
 
 const values = [
@@ -27,7 +28,7 @@ const values = [
 ];
 
 const timeline = [
-  { year: '1970', event: 'Fundación del vivero por Lucho Estay (el abuelo).' },
+  { year: '1966', event: 'Fundación del vivero por Lucho Estay (el abuelo).' },
   { year: '1991', event: 'Nace Marcos Fabian Estay' },
   { year: '2000', event: 'Segunda generación toma las riendas con nuevas variedades.' },
   { year: '2020', event: 'Tercera generación continúa la tradición con visión moderna.' },
@@ -104,12 +105,16 @@ export default function Historia() {
           {/* Timeline */}
           {/* Founder image */}
           <div className={`${styles.founderImageWrapper} reveal`}>
-            <img
-              src="/images/abuelo-jardin.png"
-              alt="Luis Estay, fundador de Jardín Cordillera"
-              className={styles.founderImage}
-            />
-            <p className={styles.founderCaption}>Luis Estay · Fundador · ~1966</p>
+            <div className={styles.founderImageBox}>
+              <Image
+                src="/images/abuelo-jardin.png"
+                alt="Luis Estay, fundador de Jardín Cordillera, trabajando en el vivero"
+                fill
+                sizes="(max-width: 1024px) 92vw, 540px"
+                className={styles.founderImage}
+              />
+            </div>
+            <p className={styles.founderCaption}>Luis Estay · Fundador · 1966</p>
           </div>
         </div>
 

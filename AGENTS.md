@@ -9,6 +9,8 @@
 
 Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — cada CTA de compra o consulta abre WhatsApp con un mensaje preescrito. El agente debe preservar esta decisión de negocio en cualquier tarea.
 
+**Datos del negocio** (NAP + hechos — única versión válida): vivero productor **fundado en 1966** por la familia Estay, producción en Ocoa, venta en Camino La Posada 11.900, Las Condes, Santiago. La fuente de verdad es `src/data/sitio.js` — cualquier dato en un componente o artículo debe salir de ahí (consistencia = SEO + recomendación por IA, ver `agents/05-geo-llm.md`).
+
 ---
 
 ## Reglas absolutas (nunca violar)
@@ -31,7 +33,7 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 ### Agregar un producto al catálogo
 
 ```
-1. Abrir data/tienda.js
+1. Abrir src/data/tienda.js
 2. Agregar objeto al array `productos` con todos los campos requeridos
 3. Colocar imagen en public/images/tienda/<id>.jpg  (si la hay)
 4. Si la categoría no existe → agregarla en CATEGORIAS con color y textColor
@@ -41,21 +43,22 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 ### Crear una nueva página
 
 ```
-1. Crear app/<nombre>/page.jsx  (Server Component)
-2. Crear app/<nombre>/layout.jsx  con metadata SEO
+1. Crear src/app/<nombre>/page.jsx  (Server Component)
+2. Crear src/app/<nombre>/layout.jsx  con metadata SEO
 3. Importar Navbar, Footer y WhatsAppFloat en page.jsx
-4. Si necesita estado → crear components/<nombre>/<Nombre>Client.jsx con 'use client'
-5. Agregar link en components/Navbar.jsx → array navLinks → { href: '/<nombre>', label: '...', isPage: true }
-6. Agregar link en components/Footer.jsx → array navLinks
-7. Crear components/<nombre>/ para componentes específicos de esa página
+4. Si necesita estado → crear src/components/<nombre>/<Nombre>Client.jsx con 'use client'
+5. Agregar link en src/components/Navbar.jsx → array navLinks → { href: '/<nombre>', label: '...', isPage: true }
+6. Agregar link en src/components/Footer.jsx → array navLinks
+7. Crear src/components/<nombre>/ para componentes específicos de esa página
+8. Agregar la URL en src/app/sitemap.js (toda página pública debe estar en el sitemap)
 ```
 
 ### Agregar una nueva sección a la landing `/`
 
 ```
-1. Crear components/sections/<NuevaSeccion>.jsx
-2. Crear components/sections/<NuevaSeccion>.module.css
-3. Importar y agregar en app/page.jsx en el orden correcto
+1. Crear src/components/sections/<NuevaSeccion>.jsx
+2. Crear src/components/sections/<NuevaSeccion>.module.css
+3. Importar y agregar en src/app/page.jsx en el orden correcto
 4. Si tiene animaciones scroll → implementar IntersectionObserver en useEffect
 5. Agregar link en Navbar y Footer si corresponde
 ```
@@ -63,7 +66,7 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 ### Cambiar colores o tipografía
 
 ```
-1. Solo modificar variables en app/globals.css (:root)
+1. Solo modificar variables en src/app/globals.css (:root)
 2. NUNCA cambiar colores hardcodeados en CSS Modules individuales
    (los valores hardcodeados en módulos son excepciones deliberadas)
 3. Verificar que el cambio no rompe contraste en fondos oscuros (--verde-profundo)
@@ -73,7 +76,7 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 ### Agregar imagen al carrusel de la galería
 
 ```
-1. Abrir data/galeria.js
+1. Abrir src/data/galeria.js
 2. Agregar objeto con id único (número), nombre, descripcion, imagen, categoria, emoji
 3. Colocar imagen en public/images/galeria/<nombre>.jpg
 4. NO tocar Galeria.jsx — es data-driven
@@ -83,7 +86,23 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 
 ## Anatomía de archivos clave
 
-### `data/tienda.js` — exports que los agentes pueden usar
+### `src/data/sitio.js` — fuente única de verdad del NEGOCIO (SEO)
+
+```js
+SITIO_URL             // URL pública del sitio (env NEXT_PUBLIC_SITE_URL)
+NEGOCIO               // nombre, fundado (1966), dirección, horarios, contacto, catálogo
+DESCRIPCION_SEO       // meta description principal
+KEYWORDS              // keywords objetivo
+horariosSchema()      // horarios en formato schema.org
+direccionSchema()     // dirección en formato schema.org
+redesSociales()       // links oficiales (sameAs)
+```
+
+Lo consumen `src/app/layout.jsx` (metadata), `src/app/sitemap.js`,
+`src/app/robots.js` y `src/components/seo/JsonLd.jsx`. **Cambiar un dato del
+negocio = editarlo aquí** (y en Footer/Contacto para display).
+
+### `src/data/tienda.js` — exports que los agentes pueden usar
 
 ```js
 CATEGORIAS          // objeto con categorías disponibles y sus colores
@@ -94,13 +113,21 @@ getProductosByCategoria(cat)         // filtra productos por categoría
 getDestacados()                      // retorna solo los destacados
 ```
 
-### `data/galeria.js` — exports
+### `src/data/galeria.js` — exports
 
 ```js
 galeriaItems        // array de items del carrusel
 ```
 
-### `app/globals.css` — qué hay aquí
+### `src/components/seo/` — componentes SEO/analytics (en el layout raíz)
+
+```js
+GoogleAnalytics.jsx  // carga GA4 solo si NEXT_PUBLIC_GA_ID existe (gtag.js vía next/script)
+WhatsAppTracker.jsx  // evento GA4 'click_whatsapp' por delegación — NO requiere tocar otros componentes
+JsonLd.jsx           // JSON-LD server-rendered (GardenStore + WebSite) — datos desde src/data/sitio.js
+```
+
+### `src/app/globals.css` — qué hay aquí
 
 - Variables CSS (tokens de diseño)
 - Reset básico
@@ -118,7 +145,7 @@ galeriaItems        // array de items del carrusel
 | Clases CSS | camelCase | `.cardWrapper`, `.imgPanel` |
 | IDs de productos | kebab-case sin tildes | `abelia-enana`, `jazmin-trepador` |
 | Variables de entorno | `NEXT_PUBLIC_SCREAMING_SNAKE` | `NEXT_PUBLIC_WHATSAPP_NUMBER` |
-| Páginas | kebab-case | `app/mi-pagina/page.jsx` |
+| Páginas | kebab-case | `src/app/mi-pagina/page.jsx` |
 
 ---
 
@@ -163,12 +190,16 @@ https://wa.me/{NEXT_PUBLIC_WHATSAPP_NUMBER}?text={mensaje URL-encoded}
 | Contexto | Mensaje generado |
 |---|---|
 | Navbar / hero | Mensaje genérico de bienvenida |
-| Tarjeta de producto (sin variante) | `"Hola, estoy interesado/a en {nombre} 🌿"` |
-| Fila de precio específico | `"Hola, estoy interesado/a en {nombre} ({tamaño} · {bolsa}) 🌿"` |
+| Tarjeta de producto (sin variante) | `"Hola, me interesa {nombre}"` (+ `. {whatsappExtra}` si existe) |
+| Fila de precio específico | `"Hola, me interesa {nombre} ({tamaño} · {bolsa})"` |
 | Sección Contacto — Visitar | Mensaje para coordinar visita |
 | Sección Contacto — Asesoría | Mensaje para pedir asesoría de jardín |
 | Sección Contacto — Pedido | Mensaje para hacer un pedido |
 | Botón flotante global | Mensaje genérico de contacto |
+
+**Tracking**: todos los clicks en links `wa.me` quedan medidos automáticamente
+en GA4 (evento `click_whatsapp`) vía `WhatsAppTracker.jsx` — al agregar un CTA
+nuevo no hay que hacer nada extra.
 
 **Para construir una nueva URL de WhatsApp**, importar y usar el helper:
 
@@ -184,26 +215,59 @@ const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Mi mensaje �
 ## Estado actual del proyecto
 
 ### Páginas implementadas
-- [x] `/` — Landing page completa (Hero, Historia, Galería, Contacto)
+- [x] `/` — Landing page completa (Hero, Galería, Historia, Contacto)
 - [x] `/tienda` — Catálogo con filtros, búsqueda, vista mosaico/lista
+- [x] `/sitemap.xml` y `/robots.txt` — generados vía `src/app/sitemap.js` y `src/app/robots.js`
 
 ### Componentes globales
 - [x] `Navbar` — sticky, scroll-aware, mobile menu, link a Tienda
 - [x] `Footer` — 4 columnas, links de navegación y contacto
 - [x] `WhatsAppFloat` — botón flotante con pulse rings en todas las páginas
+- [x] `seo/GoogleAnalytics` + `seo/WhatsAppTracker` + `seo/JsonLd` — activos en el layout raíz
 
 ### Datos cargados
-- [x] 16 productos en 6 categorías en `data/tienda.js`
-- [x] 6 items en el carrusel de `data/galeria.js`
-- [x] Imágenes: **pendientes** — están las rutas definidas, faltan los archivos `.jpg` reales en `public/images/`
+- [x] 119 especies / 161 variantes en 4 categorías (arbusto, arbol, trepadora, cubresuelo) en `src/data/tienda.js` — temporada 2025
+- [x] 4 items en el carrusel de `src/data/galeria.js`
+- [x] Datos del negocio centralizados en `src/data/sitio.js` (NAP, horarios, fundación 1966)
+- [x] Imágenes de galería y logo cargadas; fotos de productos **pendientes** (hay emoji de respaldo)
 
-### Pendiente / roadmap sugerido
-- [ ] Subir fotos reales a `public/images/galeria/` y `public/images/tienda/`
-- [ ] Página `/nosotros` dedicada (separar de la landing)
-- [ ] Página `/contacto` dedicada con mapa embebido
-- [ ] SEO: `sitemap.xml` y `robots.txt`
-- [ ] Dominio + deploy en Vercel
-- [ ] Google Analytics / Meta Pixel (si se requiere)
+### SEO / Analytics (implementado 2026-10-26)
+- [x] Metadata completa (metadataBase, canonical, OpenGraph, Twitter card) en layout raíz y /tienda
+- [x] JSON-LD: `GardenStore` + `WebSite` (`src/components/seo/JsonLd.jsx`)
+- [x] GA4 listo para activar — falta solo `NEXT_PUBLIC_GA_ID` (guía: `agents/03-analytics-ga4.md`)
+- [x] Evento `click_whatsapp` en GA4 para todos los CTAs de WhatsApp
+- [x] `public/llms.txt` para crawlers de IA
+
+### Pendiente / roadmap (specs detalladas en `agents/`)
+- [ ] Definir dominio propio → `NEXT_PUBLIC_SITE_URL` en Vercel (P1.1 de `agents/02`)
+- [ ] Páginas de categoría `/tienda/[categoria]` y de especie `/planta/[slug]` (P1.2 / P1.3)
+- [ ] Google Business Profile (P1.4 — tarea humana crítica)
+- [ ] Sección landing "Por qué hacer un jardín" (P1.5)
+- [ ] Blog `/blog` data-driven (arquitectura y calendario en `agents/04`)
+- [ ] Subir fotos reales a `public/images/tienda/`
+- [ ] Páginas `/nosotros` y `/contacto` dedicadas
+- [ ] FAQ + `FAQPage` schema · imagen OG 1200×630 · coordenadas geo
+
+---
+
+## Documentación de planes — carpeta `agents/`
+
+Todo el roadmap de SEO, analytics, contenidos y optimización para IA/LLMs
+(GEO) está documentado en la carpeta `agents/`:
+
+```
+agents/
+├── README.md                  ← índice + checklist de estado (mantener actualizado)
+├── 01-auditoria-seo.md        ← diagnóstico del sitio (brechas y correcciones)
+├── 02-plan-seo-tecnico.md     ← roadmap P0–P3 con specs listas para implementar
+├── 03-analytics-ga4.md        ← guía de activación de GA4 + Search Console
+├── 04-estrategia-contenidos.md ← blog, audiencias y calendario editorial
+└── 05-geo-llm.md              ← cómo lograr que las IA recomienden el vivero
+```
+
+**Regla**: antes de implementar una tarea del roadmap, leer el doc
+correspondiente; al completarla, actualizar el checklist de
+`agents/README.md`.
 
 ---
 
@@ -222,6 +286,8 @@ npm run lint
 # - Todos los botones de WhatsApp abren wa.me con el mensaje correcto
 # - Botón flotante de WhatsApp aparece en ambas páginas
 # - Navbar y Footer muestran "Tienda" como link
+# - /sitemap.xml y /robots.txt responden (y sitemap incluye todas las páginas públicas)
+# - Ver código fuente del home: aparece application/ld+json (GardenStore)
 ```
 
 ---

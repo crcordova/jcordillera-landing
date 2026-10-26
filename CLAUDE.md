@@ -8,7 +8,9 @@
 
 ## Contexto del proyecto
 
-**Jardín Cordillera** es el sitio web oficial de un vivero familiar con más de 70 años de historia ubicado en Las Condes, Santiago, Chile. El negocio **no tiene e-commerce** — todo el proceso de venta y consulta ocurre por **WhatsApp**. El sitio cumple función de vitrina, portafolio y generador de leads hacia WhatsApp.
+**Jardín Cordillera** es el sitio web oficial de un vivero familiar **fundado en 1966** (más de 60 años, tercera generación de la familia Estay), con producción propia en el valle de Ocoa y punto de venta en Las Condes, Santiago, Chile. El negocio **no tiene e-commerce** — todo el proceso de venta y consulta ocurre por **WhatsApp**. El sitio cumple función de vitrina, portafolio y generador de leads hacia WhatsApp.
+
+> **Fuente única de verdad de los datos del negocio**: `src/data/sitio.js` (NAP, fundación 1966, horarios). Los planes de SEO/analytics/contenidos viven en la carpeta `agents/` (ver `agents/README.md`).
 
 ### Stack técnico
 - **Framework**: Next.js 14 — App Router
@@ -36,42 +38,54 @@ npm run lint       # linter ESLint
 
 ```
 jardin-cordillera/
-├── app/                          # Next.js App Router
-│   ├── globals.css               # tokens de diseño + reset global
-│   ├── layout.jsx                # root layout con <html>, <body>, metadata
-│   ├── page.jsx                  # landing page (/)
-│   └── tienda/
-│       ├── layout.jsx            # metadata SEO de /tienda
-│       └── page.jsx              # página tienda (server component)
+├── agents/                       # planes: SEO, analytics, contenidos, GEO (ver agents/README.md)
 │
-├── components/
-│   ├── Navbar.jsx                # navbar global — reutilizable en todas las páginas
-│   ├── Navbar.module.css
-│   ├── Footer.jsx                # footer global — reutilizable en todas las páginas
-│   ├── Footer.module.css
+├── src/
+│   ├── app/                      # Next.js App Router
+│   │   ├── globals.css           # tokens de diseño + reset global
+│   │   ├── layout.jsx            # root layout con <html>, <body>, metadata SEO completa
+│   │   ├── page.jsx              # landing page (/)
+│   │   ├── sitemap.js            # genera /sitemap.xml
+│   │   ├── robots.js             # genera /robots.txt
+│   │   └── tienda/
+│   │       ├── layout.jsx        # metadata SEO de /tienda
+│   │       └── page.jsx          # página tienda (server component)
 │   │
-│   ├── sections/                 # secciones de la landing page (/)
-│   │   ├── Hero.jsx              # hero con parallax y stats
-│   │   ├── Historia.jsx          # historia + timeline + valores
-│   │   ├── Galeria.jsx           # carrusel de imágenes
-│   │   └── Contacto.jsx          # contacto con CTAs de WhatsApp
+│   ├── components/
+│   │   ├── Navbar.jsx            # navbar global — reutilizable en todas las páginas
+│   │   ├── Navbar.module.css
+│   │   ├── Footer.jsx            # footer global — reutilizable en todas las páginas
+│   │   ├── Footer.module.css
+│   │   │
+│   │   ├── seo/                  # SEO + analytics (montados en el root layout)
+│   │   │   ├── GoogleAnalytics.jsx   # GA4 — solo carga si NEXT_PUBLIC_GA_ID existe
+│   │   │   ├── WhatsAppTracker.jsx   # evento GA4 click_whatsapp (delegación de clicks)
+│   │   │   └── JsonLd.jsx            # JSON-LD: GardenStore + WebSite (server-rendered)
+│   │   │
+│   │   ├── sections/             # secciones de la landing page (/)
+│   │   │   ├── Hero.jsx          # hero con parallax y stats
+│   │   │   ├── Historia.jsx      # historia + timeline + valores
+│   │   │   ├── Galeria.jsx        # carrusel de imágenes
+│   │   │   └── Contacto.jsx      # contacto con CTAs de WhatsApp
+│   │   │
+│   │   ├── tienda/               # componentes exclusivos de /tienda
+│   │   │   ├── TiendaClient.jsx      # orquestador de estado (filtros, vista, búsqueda)
+│   │   │   ├── TiendaHeader.jsx      # hero oscuro de la tienda
+│   │   │   ├── FiltroBar.jsx         # barra sticky de filtros y búsqueda
+│   │   │   ├── ProductGrid.jsx       # layout mosaico
+│   │   │   ├── ProductCard.jsx       # tarjeta individual (vista mosaico)
+│   │   │   └── ProductList.jsx       # tabla compacta (vista lista)
+│   │   │
+│   │   └── ui/
+│   │       └── WhatsAppFloat.jsx     # botón flotante de WhatsApp (presente en todas las páginas)
 │   │
-│   ├── tienda/                   # componentes exclusivos de /tienda
-│   │   ├── TiendaClient.jsx      # orquestador de estado (filtros, vista, búsqueda)
-│   │   ├── TiendaHeader.jsx      # hero oscuro de la tienda
-│   │   ├── FiltroBar.jsx         # barra sticky de filtros y búsqueda
-│   │   ├── ProductGrid.jsx       # layout mosaico
-│   │   ├── ProductCard.jsx       # tarjeta individual (vista mosaico)
-│   │   └── ProductList.jsx       # tabla compacta (vista lista)
-│   │
-│   └── ui/
-│       └── WhatsAppFloat.jsx     # botón flotante de WhatsApp (presente en todas las páginas)
-│
-├── data/
-│   ├── galeria.js                # datos del carrusel de la landing
-│   └── tienda.js                 # catálogo de productos con helpers de precio y WA
+│   └── data/
+│       ├── sitio.js              # ⭐ fuente única de verdad del NEGOCIO (SEO: NAP, horarios, fundación)
+│       ├── galeria.js            # datos del carrusel de la landing
+│       └── tienda.js             # catálogo (119 especies / 161 variantes) con helpers de precio y WA
 │
 └── public/
+    ├── llms.txt                  # ficha factual del negocio para crawlers de IA (GEO)
     └── images/
         ├── galeria/              # fotos para el carrusel → galeria.js
         └── tienda/               # fotos de productos → tienda.js
@@ -92,6 +106,8 @@ Todas las variables de entorno están en `.env.local` (gitignored). Consultar `.
 | `NEXT_PUBLIC_INSTAGRAM` | Usuario IG sin `@` | `jardincordillera` |
 | `NEXT_PUBLIC_MAPS_EMBED` | URL del iframe de Google Maps | `https://maps.google.com/...` |
 | `NEXT_PUBLIC_MAPS_LINK` | Link directo de Google Maps | `https://maps.google.com/...` |
+| `NEXT_PUBLIC_SITE_URL` | URL pública del sitio (SEO: sitemap, canonical, JSON-LD). También en Vercel | `https://jardincordillera.cl` |
+| `NEXT_PUBLIC_GA_ID` | Measurement ID de Google Analytics 4 — vacío = GA desactivado | `G-XXXXXXXXXX` |
 
 > **Nunca hardcodear** el número de WhatsApp directamente en los componentes. Siempre usar `process.env.NEXT_PUBLIC_WHATSAPP_NUMBER` con fallback.
 
@@ -185,12 +201,15 @@ import { getWhatsAppUrl } from '@/data/tienda';
 
 // Mensaje genérico del producto
 const url = getWhatsAppUrl(producto);
-// → "https://wa.me/56987686499?text=Hola%2C%20estoy%20interesado%2Fa%20en%20Lavanda%20%F0%9F%8C%BF"
+// → "https://wa.me/56987686499?text=Hola%2C%20me%20interesa%20Lavanda%20Francesa"
 
 // Mensaje específico de una variante
 const url = getWhatsAppUrl(producto, variante);
-// → "...en%20Lavanda%20(B-30%20%C2%B7%20bolsa%2030%20cm)%20%F0%9F%8C%BF"
+// → "...me%20interesa%20Lavanda%20Francesa%20(B-22%20%C2%B7%20bolsa%2022%20cm)"
 ```
+
+> Los clicks en estos links se miden solos en GA4 (evento `click_whatsapp`) —
+> ver `src/components/seo/WhatsAppTracker.jsx`.
 
 ### Scroll reveal animation
 
@@ -258,15 +277,19 @@ export const CATEGORIAS = {
 
 | Ruta | Archivo | Descripción |
 |---|---|---|
-| `/` | `app/page.jsx` | Landing page — Hero, Historia, Galería, Contacto |
-| `/tienda` | `app/tienda/page.jsx` | Catálogo de productos con filtros |
+| `/` | `src/app/page.jsx` | Landing page — Hero, Galería, Historia, Contacto |
+| `/tienda` | `src/app/tienda/page.jsx` | Catálogo de 119 especies con filtros |
+| `/sitemap.xml` | `src/app/sitemap.js` | Sitemap generado (agregar aquí toda página pública nueva) |
+| `/robots.txt` | `src/app/robots.js` | Directivas de crawlers (permite todos, incluye IA) |
 
 ### Crear una nueva página
 
-1. Crear `app/nueva-pagina/page.jsx`
+1. Crear `src/app/nueva-pagina/page.jsx`
 2. Importar `Navbar`, `Footer` y `WhatsAppFloat` (son reutilizables)
 3. Agregar el link en `Navbar.jsx` y `Footer.jsx` (array `navLinks`)
 4. Si es una página interna (no sección del home), usar `href: '/nueva-pagina'` con `isPage: true` en el Navbar
+5. Agregar `title`/`description`/`alternates.canonical` en `layout.jsx` de la página
+6. Agregar la URL al array de `src/app/sitemap.js`
 
 ---
 

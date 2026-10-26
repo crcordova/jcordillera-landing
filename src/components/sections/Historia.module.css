@@ -199,14 +199,18 @@
   align-items: center;
 }
 
-/* La imagen ocupa toda la altura del texto de la izquierda */
-.founderImage {
+/* Caja con proporción fija para next/image con fill */
+.founderImageBox {
+  position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 896 / 1200; /* proporción natural de abuelo-jardin.png */
+}
+
+/* La imagen llena la caja (fill) */
+.founderImage {
   object-fit: cover;         /* recorta sin deformar */
   object-position: top;      /* prioriza la cara/parte superior */
   border-radius: 4px;
-  display: block;
   filter: sepia(20%);        /* toque vintage sutil, quítalo si no va con tu paleta */
 }
 

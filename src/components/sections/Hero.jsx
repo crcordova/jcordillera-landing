@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
 const WA_NUMBER  = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER  || '56987686499';
@@ -73,9 +74,9 @@ export default function Hero() {
             <WhatsAppIcon />
             Escríbenos por WhatsApp
           </a> */}
-          <a href="/tienda" className={styles.ctaSecondary}>
-            Ver Catalogo →
-          </a>
+          <Link href="/tienda" className={styles.ctaSecondary}>
+            Ver Catálogo →
+          </Link>
         </div>
       </div>
 

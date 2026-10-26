@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './TiendaHeader.module.css';
 
 export default function TiendaHeader({ totalProductos }) {
@@ -13,9 +14,9 @@ export default function TiendaHeader({ totalProductos }) {
             <span className={styles.metaDot} />
             Catálogo Oficial · Temporada 2025
           </span>
-          <a href="/" className={styles.backLink}>
+          <Link href="/" className={styles.backLink}>
             ← Volver al inicio
-          </a>
+          </Link>
         </div>
 
         <h1 className={styles.title}>
