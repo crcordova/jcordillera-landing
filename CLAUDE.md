@@ -13,7 +13,7 @@
 > **Fuente única de verdad de los datos del negocio**: `src/data/sitio.js` (NAP, fundación 1966, horarios). Los planes de SEO/analytics/contenidos viven en la carpeta `agents/` (ver `agents/README.md`).
 
 ### Stack técnico
-- **Framework**: Next.js 14 — App Router
+- **Framework**: Next.js 16.2.0 — App Router (código en `src/`)
 - **Lenguaje**: JavaScript (JSX, sin TypeScript)
 - **Estilos**: CSS Modules por componente (sin Tailwind, sin styled-components)
 - **Imágenes**: `next/image` con `fill` + `sizes` para optimización
@@ -106,7 +106,7 @@ Todas las variables de entorno están en `.env.local` (gitignored). Consultar `.
 | `NEXT_PUBLIC_INSTAGRAM` | Usuario IG sin `@` | `jardincordillera` |
 | `NEXT_PUBLIC_MAPS_EMBED` | URL del iframe de Google Maps | `https://maps.google.com/...` |
 | `NEXT_PUBLIC_MAPS_LINK` | Link directo de Google Maps | `https://maps.google.com/...` |
-| `NEXT_PUBLIC_SITE_URL` | URL pública del sitio (SEO: sitemap, canonical, JSON-LD). También en Vercel | `https://jardincordillera.cl` |
+| `NEXT_PUBLIC_SITE_URL` | URL pública del sitio (SEO: sitemap, canonical, JSON-LD). También en Vercel | `https://www.jardincordillera.cl` |
 | `NEXT_PUBLIC_GA_ID` | Measurement ID de Google Analytics 4 — vacío = GA desactivado | `G-XXXXXXXXXX` |
 
 > **Nunca hardcodear** el número de WhatsApp directamente en los componentes. Siempre usar `process.env.NEXT_PUBLIC_WHATSAPP_NUMBER` con fallback.

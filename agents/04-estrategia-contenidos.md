@@ -121,12 +121,12 @@ export const articulos = [
 | 4 | Plantas de interior que sobreviven con poca luz (y purifican) | Diseñ. interior | "plantas interior poca luz" | philodendro-monstera, sansevieria, palmera-kentia, schefflera |
 | 5 | Cubresuelos: la alfombra natural que elimina malezas y riego | Hogar + paisajistas | "plantas cubresuelo" | cotula, hipericum, vinca-minor, vitadineas |
 | 6 | Hortensias en Chile: suelo, riego y por qué cambian de color | Hogar | "cuidado hortensias" | hortensia, hortensia-quercifolia |
-| 7 | Árboles de sombra para jardines pequeños | Hogar | "árboles sombra jardín chico" | arcer-japonico, quillay, tulipero |
+| 7 | Árboles de sombra para jardines pequeños | Hogar | "árboles sombra jardín chico" | acer-japonico, quillay, tulipero |
 | 8 | Setos de invierno y otoño: qué plantar fuera de temporada | Jardineros | "plantar en otoño chile" | laurel-flor, abelia-arbustiva |
 | 9 | Guía de riego por estación para jardines en Santiago | Todas | "riego plantas verano" | — (educativo) |
 | 10 | 6 plantas perfumadas para acercar al living o la terraza | Diseñ. interior + hogar | "plantas aromáticas jardín" | jazmin-helice, sarcococa, rosa-iceberg |
 | 11 | Salvia de jardín: comparativa de las 6 que vendemos | Jardineros | "salvia leucantha chile" | salvia-blue, salvia-leucantha, salvia-microphylla-roja, salvia-nemorosa, salvia-love-and-wish |
-| 12 | Qué plantas regalar (y cuáles evitar) según la ocasión | Hogar | "plantas para regalar" | cala, violeta-de-persia, azalea?→ usar existentes |
+| 12 | Qué plantas regalar (y cuáles evitar) según la ocasión | Hogar | "plantas para regalar" | cala, violeta-de-persia, zephyrantes |
 
 **Cadencia**: 2 artículos/mes el primer trimestre; evaluar con Search Console
 qué formatos ganan impresiones y ajustar (ver `03-analytics-ga4.md` § rutina).

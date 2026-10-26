@@ -21,7 +21,7 @@
 
 /** URL pública del sitio, sin slash final.
  *  En Vercel: Project Settings → Environment Variables → NEXT_PUBLIC_SITE_URL
- *  (ej: https://jardincordillera.cl). Requiere redeploy al cambiarla. */
+ *  (actual: https://www.jardincordillera.cl). Requiere redeploy al cambiarla. */
 export const SITIO_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 'https://jcordillera-landing.vercel.app'
 ).replace(/\/+$/, '');

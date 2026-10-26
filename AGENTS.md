@@ -239,7 +239,7 @@ const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Mi mensaje �
 - [x] `public/llms.txt` para crawlers de IA
 
 ### Pendiente / roadmap (specs detalladas en `agents/`)
-- [ ] Definir dominio propio → `NEXT_PUBLIC_SITE_URL` en Vercel (P1.1 de `agents/02`)
+- [x] ~~Definir dominio propio → `NEXT_PUBLIC_SITE_URL` en Vercel~~ → **hecho 2026-10-26**: `https://www.jardincordillera.cl` (env local + Vercel + redeploy)
 - [ ] Páginas de categoría `/tienda/[categoria]` y de especie `/planta/[slug]` (P1.2 / P1.3)
 - [ ] Google Business Profile (P1.4 — tarea humana crítica)
 - [ ] Sección landing "Por qué hacer un jardín" (P1.5)
@@ -262,7 +262,8 @@ agents/
 ├── 02-plan-seo-tecnico.md     ← roadmap P0–P3 con specs listas para implementar
 ├── 03-analytics-ga4.md        ← guía de activación de GA4 + Search Console
 ├── 04-estrategia-contenidos.md ← blog, audiencias y calendario editorial
-└── 05-geo-llm.md              ← cómo lograr que las IA recomienden el vivero
+├── 05-geo-llm.md              ← cómo lograr que las IA recomienden el vivero
+└── 06-google-ads.md           ← primera campaña de Ads + conversión de WhatsApp
 ```
 
 **Regla**: antes de implementar una tarea del roadmap, leer el doc
