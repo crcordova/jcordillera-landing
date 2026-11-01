@@ -8,14 +8,17 @@ import ProductGrid from './ProductGrid';
 import ProductList from './ProductList';
 import styles from './TiendaClient.module.css';
 
-export default function TiendaClient({ productos, categorias }) {
+export default function TiendaClient({ productos, categorias, categoriaInicial = 'all', mostrarHeader = true }) {
   const [vista, setVista]         = useState('lista'); // 'mosaico' | 'lista'
   const searchParams = useSearchParams();
 
-  // ── Leer ?categoria= de la URL (lazy init — sin effect) ──
+  // ── Leer ?categoria= de la URL o la prop inicial (lazy init — sin effect) ──
   const [categoria, setCategoria] = useState(() => {
-    const cat = searchParams.get('categoria');
+    const cat = searchParams.get('categoria') || categoriaInicial;
     if (!cat) return 'all';
+    // Primero intentar por slug (categoriaInicial es el slug real de /tienda/[categoria])
+    if (categorias[cat]) return cat;
+    // Fallback por label (URLs antiguas tipo ?categoria=Arbustos)
     const match = Object.entries(categorias).find(
       ([, v]) => v.label.toLowerCase() === cat.toLowerCase()
     );
@@ -48,10 +51,10 @@ export default function TiendaClient({ productos, categorias }) {
 
   return (
     <div className={styles.wrapper}>
-      {/* Header hero */}
-      <TiendaHeader totalProductos={productos.length} />
+      {/* Header hero (en /tienda/[categoria] lo reemplaza CategoriaIntro) */}
+      {mostrarHeader && <TiendaHeader totalProductos={productos.length} />}
 
-      {/* Sticky filter + view toggle bar */}
+      {/* Búsqueda + filtros (sticky) — mantiene el mismo comportamiento de /tienda */}
       <FiltroBar
         categorias={categorias}
         categoriaActiva={categoria}

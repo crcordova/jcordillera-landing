@@ -23,12 +23,55 @@
  * ─────────────────────────────────────────────────────────────────
  */
 
+/**
+ * CATEGORIAS — además de color/textColor (filtros), cada categoría real lleva:
+ *  h1               → título SEO de la página /tienda/[categoria]
+ *  descripcionSeo   → texto introductorio único (~70-90 palabras) — NO reutilizar entre categorías
+ *  emoji            → respaldo visual del header de la página de categoría
+ *  whatsappMensaje  → mensaje del CTA de asesoría de esa página
+ */
 export const CATEGORIAS = {
   all:        { label: 'Todas',       color: null },
-  arbusto:    { label: 'Arbustos',    color: '#e0eed8', textColor: '#253d20' },
-  arbol:      { label: 'Árboles',     color: '#d4ecd4', textColor: '#1a4a1a' },
-  trepadora:  { label: 'Trepadoras',  color: '#f5ecd8', textColor: '#6b3a10' },
-  cubresuelo: { label: 'Cubresuelo', color: '#e8f0f8', textColor: '#1a3a6b' },
+  arbusto: {
+    label: 'Arbustos',
+    color: '#e0eed8',
+    textColor: '#253d20',
+    emoji: '🌿',
+    h1: 'Arbustos para jardín en Santiago',
+    descripcionSeo:
+      'Arbustos que aportan estructura, volumen y color a setos vivos, borduras, terrazas y jardines de bajo riego. Adaptados al clima de Santiago. Vivero productor desde 1966, con retiro en Las Condes.',
+    whatsappMensaje: 'Hola, busco arbustos para mi jardín y quiero asesoría para elegir',
+  },
+  arbol: {
+    label: 'Árboles',
+    color: '#d4ecd4',
+    textColor: '#1a4a1a',
+    emoji: '🌳',
+    h1: 'Árboles ornamentales para tu jardín',
+    descripcionSeo:
+      'Un árbol bien elegido transforma un patio: entrega sombra en verano, atrae aves y acompaña al jardín por generaciones. Trabajamos árboles ornamentales y de flor para parques y jardines grandes, además de especies de porte medio para espacios urbanos, producidos en nuestro vivero de Ocoa y adaptados al clima de Santiago. Elegir según el tamaño adulto y la ubicación es la decisión más importante del proyecto: asesoramos por WhatsApp antes de la compra, con precios por tamaño de bolsa.',
+    whatsappMensaje: 'Hola, busco un árbol para mi jardín y quiero asesoría para elegir',
+  },
+  trepadora: {
+    label: 'Trepadoras',
+    color: '#f5ecd8',
+    textColor: '#6b3a10',
+    emoji: '🌸',
+    h1: 'Trepadoras para muros, pérgolas y cercos',
+    descripcionSeo:
+      'Las trepadoras resuelven el desafío favorito del jardín urbano: cubrir muros, pérgolas, quicios y cercos con flores y verdor en poco espacio. Producimos trepadoras de floración generosa y de follaje persistente para cubrir fachadas, dar privacidad a terrazas o perfumar patios, adaptadas al clima de Santiago. Cultivadas en Ocoa por nuestra familia desde 1966, en distintos tamaños de bolsa y con precios transparentes. Cuéntanos qué quieres cubrir y te asesoramos por WhatsApp.',
+    whatsappMensaje: 'Hola, busco una trepadora para cubrir un muro o pérgola y quiero asesoría',
+  },
+  cubresuelo: {
+    label: 'Cubresuelo',
+    color: '#e8f0f8',
+    textColor: '#1a3a6b',
+    emoji: '🌱',
+    h1: 'Cubresuelos para tapizar tu jardín',
+    descripcionSeo:
+      'Los cubresuelos tapizan el suelo del jardín con poco mantenimiento: ayudan a frenar la erosión, cubren taludes y calugas, y reducen la necesidad de pasto y riego. Ofrecemos especies tapizantes de follaje denso y flores de temporada, producidas en Ocoa y adaptadas al clima seco de Santiago, ideales para rellenar canteros, bordear caminos de piedra o cubrir pendientes difíciles. Vivero productor familiar desde 1966, con venta y retiro en Las Condes.',
+    whatsappMensaje: 'Hola, busco cubresuelos para mi jardín y quiero asesoría para elegir',
+  },
 };
 
 /** Formatea precio CLP → "$14.500" */

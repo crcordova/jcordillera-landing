@@ -11,6 +11,7 @@
  */
 
 import { SITIO_URL } from '@/data/sitio';
+import { CATEGORIAS } from '@/data/tienda';
 
 export default function sitemap() {
   const lastModified = new Date();
@@ -28,5 +29,14 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Páginas de categoría /tienda/[categoria] (data-driven desde CATEGORIAS)
+    ...Object.keys(CATEGORIAS)
+      .filter((k) => k !== 'all')
+      .map((k) => ({
+        url: `${SITIO_URL}/tienda/${k}`,
+        lastModified,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      })),
   ];
 }

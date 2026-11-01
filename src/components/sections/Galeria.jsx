@@ -124,7 +124,7 @@ export default function Galeria({ items }) {
 
               <p className={styles.itemDesc}>{item.descripcion}</p>
               <Link
-                href={`/tienda?categoria=${encodeURIComponent(item.categoria)}`}
+                href={`/tienda/${item.categoriaSlug}`}
                 className={styles.ctaBtn}
               >
                 Ver {item.nombre} en tienda →

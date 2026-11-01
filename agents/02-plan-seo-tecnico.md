@@ -43,7 +43,7 @@ Detalle de cada archivo creado:
 - ⚠️ Pendiente humano: verificar en Google Search Console con el prefijo
   `https://www.jardincordillera.cl` (ver `03-analytics-ga4.md`).
 
-### P1.2 — Páginas de categoría `/tienda/[categoria]` (4 URLs indexables)
+### P1.2 — Páginas de categoría `/tienda/[categoria]` (4 URLs indexables) ✅ COMPLETADO (2026-11-01)
 
 **Objetivo**: que "arbustos", "árboles", "trepadoras" y "cubresuelos" sean
 páginas reales con texto SEO + catálogo filtrado, en vez de solo un filtro

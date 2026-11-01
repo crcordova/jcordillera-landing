@@ -36,7 +36,9 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 1. Abrir src/data/tienda.js
 2. Agregar objeto al array `productos` con todos los campos requeridos
 3. Colocar imagen en public/images/tienda/<id>.jpg  (si la hay)
-4. Si la categoría no existe → agregarla en CATEGORIAS con color y textColor
+4. Si la categoría no existe → agregarla en CATEGORIAS con color, textColor,
+   emoji, h1, descripcionSeo y whatsappMensaje (la página /tienda/[categoria]
+   y su entrada en el sitemap se generan solas en el siguiente deploy)
 5. NO tocar ningún componente — el sistema es data-driven
 ```
 
@@ -77,7 +79,7 @@ Sitio web vitrina de un vivero familiar chileno. **No hay e-commerce real** — 
 
 ```
 1. Abrir src/data/galeria.js
-2. Agregar objeto con id único (número), nombre, descripcion, imagen, categoria, emoji
+2. Agregar objeto con id único (número), nombre, descripcion, imagen, categoria, categoriaSlug, emoji
 3. Colocar imagen en public/images/galeria/<nombre>.jpg
 4. NO tocar Galeria.jsx — es data-driven
 ```
@@ -217,6 +219,7 @@ const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Mi mensaje �
 ### Páginas implementadas
 - [x] `/` — Landing page completa (Hero, Galería, Historia, Contacto)
 - [x] `/tienda` — Catálogo con filtros, búsqueda, vista mosaico/lista
+- [x] `/tienda/[categoria]` — 4 páginas SSG con H1 + intro SEO data-driven (P1.2, 2026-11-01)
 - [x] `/sitemap.xml` y `/robots.txt` — generados vía `src/app/sitemap.js` y `src/app/robots.js`
 
 ### Componentes globales
@@ -240,7 +243,7 @@ const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Mi mensaje �
 
 ### Pendiente / roadmap (specs detalladas en `agents/`)
 - [x] ~~Definir dominio propio → `NEXT_PUBLIC_SITE_URL` en Vercel~~ → **hecho 2026-10-26**: `https://www.jardincordillera.cl` (env local + Vercel + redeploy)
-- [ ] Páginas de categoría `/tienda/[categoria]` y de especie `/planta/[slug]` (P1.2 / P1.3)
+- [x] ~~Páginas de categoría `/tienda/[categoria]`~~ (P1.2, 2026-11-01) · Pendiente: de especie `/planta/[slug]` (P1.3)
 - [ ] Google Business Profile (P1.4 — tarea humana crítica)
 - [ ] Sección landing "Por qué hacer un jardín" (P1.5)
 - [ ] Blog `/blog` data-driven (arquitectura y calendario en `agents/04`)

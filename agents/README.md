@@ -34,7 +34,7 @@ cayendo a **WhatsApp**.
 > ⚠️ **Regla de esta carpeta**: cualquier agente que complete o avance una
 > tarea de estos planes DEBE actualizar este checklist y la fecha.
 
-Última actualización: **2026-10-26**
+Última actualización: **2026-11-01**
 
 ### ✅ P0 — Implementado (sesión inicial de SEO/Analytics)
 
@@ -54,7 +54,7 @@ cayendo a **WhatsApp**.
 
 ### ⬜ P1 — Próximas tareas de mayor impacto (ver `02`)
 
-- [ ] Páginas de categoría: `/tienda/[categoria]` (4 páginas indexables)
+- [ ] Páginas de categoría: ~~`/tienda/[categoria]`~~ → **hecho 2026-11-01**: 4 URLs SSG (`/tienda/arbusto`, `/tienda/arbol`, `/tienda/trepadora`, `/tienda/cubresuelo`) con H1 + metadata + canonical únicos, intro SEO data-driven (`descripcionSeo`/`h1`/`whatsappMensaje` en `CATEGORIAS`), sitemap actualizado, columna "Plantas" en Footer. Filtros/búsqueda idénticos a `/tienda` (prop `categoriaInicial` en `TiendaClient`).
 - [ ] Páginas de especie: `/planta/[slug]` (119 páginas long-tail)
 - [ ] Google Business Profile (tarea humana — CRÍTICO para local SEO y GEO)
 - [ ] Sección landing "Por qué hacer un jardín"

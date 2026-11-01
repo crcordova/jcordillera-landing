@@ -98,6 +98,43 @@
   width: 100%;
 }
 
+/* ── Tienda dropdown — desktop ── */
+.dropdownWrap {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: rgba(27, 44, 28, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(122, 158, 110, 0.25);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  list-style: none;
+  z-index: 1001;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: var(--crema-oscuro);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.dropdownLink:hover {
+  color: var(--crema);
+  background: rgba(122, 158, 110, 0.12);
+}
+
 /* ── Desktop CTA ── */
 .cta {
   display: inline-flex;
@@ -164,7 +201,7 @@
 }
 
 .mobileMenuOpen {
-  max-height: 500px;
+  max-height: 700px;
 }
 
 .mobileLinks {
@@ -183,9 +220,66 @@
   padding: 1rem 0;
   border-bottom: 1px solid rgba(122, 158, 110, 0.15);
   transition: color 0.2s;
+  text-decoration: none;
 }
 
 .mobileLink:hover {
+  color: var(--tierra-claro);
+}
+
+/* ── Mobile Tienda submenu ── */
+.mobileGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(122, 158, 110, 0.15);
+}
+
+.mobileGroupHeader .mobileLink {
+  border-bottom: none;
+  flex: 1;
+}
+
+.mobileChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: var(--crema-oscuro);
+  cursor: pointer;
+  transition: transform 0.25s ease, color 0.2s;
+}
+
+.mobileChevron:hover {
+  color: var(--tierra-claro);
+}
+
+.mobileChevronOpen {
+  transform: rotate(180deg);
+}
+
+.mobileSubmenu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(122, 158, 110, 0.2);
+  margin: 0.2rem 0 0.6rem 0.5rem;
+}
+
+.mobileSubLink {
+  color: rgba(232, 223, 208, 0.72);
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 0;
+  transition: color 0.2s;
+}
+
+.mobileSubLink:hover {
   color: var(--tierra-claro);
 }
 
@@ -202,6 +296,7 @@
   margin-top: 1.5rem;
   transition: background 0.2s;
   align-self: flex-start;
+  text-decoration: none;
 }
 
 .mobileCta:hover {

@@ -14,6 +14,14 @@ const navLinks = [
   { href: '/#contacto', label: 'Contacto' },
 ];
 
+// Enlaces internos a las páginas de categoría (SEO — ver agents/02 § P1.2)
+const plantasLinks = [
+  { href: '/tienda/arbusto',    label: 'Arbustos' },
+  { href: '/tienda/arbol',      label: 'Árboles' },
+  { href: '/tienda/trepadora',  label: 'Trepadoras' },
+  { href: '/tienda/cubresuelo', label: 'Cubresuelos' },
+];
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -50,6 +58,18 @@ export default function Footer() {
           <p className={styles.colTitle}>Navegación</p>
           <ul className={styles.colLinks}>
             {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className={styles.colLink}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Plantas por categoría */}
+        <div className={styles.col}>
+          <p className={styles.colTitle}>Plantas</p>
+          <ul className={styles.colLinks}>
+            {plantasLinks.map((link) => (
               <li key={link.href}>
                 <a href={link.href} className={styles.colLink}>{link.label}</a>
               </li>
