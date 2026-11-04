@@ -151,96 +151,38 @@ funcionan igual que en `/tienda`.
 
 ### P1.3 — Páginas de especie `/planta/[slug]` (119 URLs long-tail) 🚀
 
-**Objetivo**: cada especie del catálogo se vuelve una página indexable que
-captura búsquedas como *"lavanda francesa chile"*, *"hortensia precio"*,
-*"trepadoras para pérgola"*. Es el cambio de mayor volumen de tráfico del plan.
+**Estado:** especificación detallada preparada; implementación pendiente.
 
-**Archivos nuevos:**
-- `src/app/planta/[slug]/page.jsx`
-- `src/app/planta/[slug]/layout.jsx`
-- `src/components/planta/PlantaHero.jsx` + `.module.css` (foto/emoji, nombre,
-  nombre científico, precios por variante, CTA WhatsApp)
-- `src/components/planta/PlantaInfo.jsx` + `.module.css` (texto SEO:
-  usos, exposición, riego — ver nota de datos abajo)
+**Objetivo:** convertir cada especie aprobada del catálogo en una página estática
+que responda búsquedas específicas (nombre común, nombre científico, atributos y
+precio) y lleve a una consulta por WhatsApp. No se agrega e-commerce.
 
-**Nota de datos (regla data-driven):** los productos de `src/data/tienda.js`
-hoy tienen `descripcion` de ~80-130 chars. Para páginas de especie se recomienda
-agregar campos opcionales enriquecidos al producto (NO obligatorios, para no
-romper lo existente):
+**Plan detallado:** [`agents/07-p1.3-especies.md`](./07-p1.3-especies.md).
+Incluye la extracción revisable desde `catalogo-plantas.html`, modelo JSON con
+atributos variables, almacenamiento de imágenes en R2, controles de exposición
+y costo, rutas estables, enlaces desde las tarjetas, SEO, disponibilidad y QA.
 
-```js
-{
-  // ...campos actuales
-  usos: 'Seto bajo, maceta, borde de camino',   // ~60 chars
-  exposicion: 'Sol / media sombra',
-  riego: 'Moderado — 2 veces/semana en verano',
-  floracion: 'Primavera a verano',
-  resistencia: 'Resiste heladas leves',
-}
-```
+**Decisiones técnicas base:**
+- `catalogo-plantas.html` es la entrada de la migración. El agente normalizador
+  genera un JSON candidato y un informe de diferencias; el dueño aprueba los
+  datos antes de reemplazar la fuente actual del catálogo.
+- La ficha guarda `atributos` como una lista genérica de nombre/valor. No se
+  obligan todas las especies a tener el mismo esquema agronómico.
+- Los IDs actuales de `src/data/tienda.js` se conservan como slugs siempre que
+  correspondan a la misma especie. El slug es estable y no depende de la categoría.
+- Las imágenes viven en un bucket R2 dedicado a medios públicos, servido por
+  dominio propio de Cloudflare y con caché. El catálogo JSON no se hace público
+  a través del bucket de imágenes.
+- La foto, el nombre y la descripción de cada tarjeta llevan a la ficha; las
+  filas de variantes y los CTA explícitos siguen abriendo WhatsApp.
+- `/tienda/[categoria]` envía al cliente solo los productos de esa categoría;
+  `/tienda` mantiene el catálogo completo para la búsqueda global.
 
-Mientras una especie no tenga estos campos, `PlantaInfo.jsx` muestra solo la
-`descripcion` actual (la página se publica igual; se enriquece después).
-**Nunca inventar datos agronómicos**: completarlos con el dueño del vivero —
-la exactitud es un pilar GEO (ver `05-geo-llm.md`).
-
-**Estructura de `page.jsx`:**
-
-```jsx
-import { productos, CATEGORIAS, getWhatsAppUrl } from '@/data/tienda';
-// ...imports globales (Navbar, Footer, WhatsAppFloat)
-import { notFound } from 'next/navigation';
-
-export function generateStaticParams() {
-  return productos.map((p) => ({ slug: p.id }));
-}
-
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const planta = productos.find((p) => p.id === slug);
-  if (!planta) return {};
-  return {
-    title: `${planta.nombre} (${planta.nombreCientifico}) · Precio en vivero`,
-    description: `${planta.descripcion} Vivero productor en Las Condes, Santiago. Pedido directo por WhatsApp.`,
-    alternates: { canonical: `/planta/${slug}` },
-    openGraph: {
-      title: `${planta.nombre} · Jardín Cordillera`,
-      description: planta.descripcion,
-      // images: [{ url: planta.imagen }] solo si existe
-    },
-  };
-}
-
-export default async function PlantaPage({ params }) {
-  const { slug } = await params;
-  const planta = productos.find((p) => p.id === slug);
-  if (!planta) notFound();
-  const categoria = CATEGORIAS[planta.categoria];
-  // render: PlantaHero + PlantaInfo + sección relacionadas
-  // (3-4 plantas de la misma categoría → malla de enlaces internos)
-}
-```
-
-**CTAs:** usar `getWhatsAppUrl(producto, variante)` — cada fila de precio
-con su propio botón (patrón ya validado en `ProductCard`/`ProductList`).
-
-**JSON-LD opcional (P2, no P1):** schema.org `Product` + `Offer` con
-`availability: 'https://schema.org/InStock'` y `priceCurrency: 'CLP'`.
-⚠️ Esto NO viola la regla "sin e-commerce": es solo metadato descriptivo
-(precio y disponibilidad en tienda física), sin carrito ni checkout.
-Decisión final: pedir aprobación al dueño antes de implementarlo.
-
-**Sitemap:** map de `productos` → `/planta/${p.id}` con `priority: 0.7`.
-
-**Links internos:**
-- Desde `/tienda/[categoria]`: cada tarjeta enlaza a `/planta/[slug]`.
-- Desde `ProductGrid`/`ProductList`: envolver tarjeta en `<Link>` —
-  **cuidado**: la tarjeta completa ya tiene `<a href={wa.me}>` adentro;
-  el link de página debe ir en el nombre/foto, sin anidar `<a>` (HTML inválido).
-
-**Criterio de aceptación:** build genera las 119 rutas estáticas (ver output
-de `npm run build`), cada página tiene title/description únicos, todos los
-botones de WhatsApp conservan su mensaje, `/sitemap.xml` las incluye.
+**Criterio de aceptación resumido:** build estático de las especies publicadas,
+metadata y canonical únicos, sitemap sin retiradas, rutas antiguas preservadas o
+redirigidas, navegación accesible sin enlaces anidados, fotos servidas desde R2,
+atributos variables renderizados sin inventar información y CTAs de WhatsApp
+correctos en listado y ficha.
 
 ---
 

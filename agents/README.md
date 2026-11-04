@@ -26,6 +26,7 @@ cayendo a **WhatsApp**.
 | [`04-estrategia-contenidos.md`](./04-estrategia-contenidos.md) | Blog data-driven, audiencias (hogar, jardineros, diseñadores int/ext), calendario editorial, sección "Por qué hacer un jardín" | Dueño + agentes + redactor |
 | [`05-geo-llm.md`](./05-geo-llm.md) | Cómo lograr que las IA generativas recomienden el vivero (GEO) | Estrategia — leer antes de crear contenidos |
 | [`06-google-ads.md`](./06-google-ads.md) | Primera campaña de Google Ads con conversión de WhatsApp (vinculación GA4↔Ads, keywords locales) | Dueño (montar la campaña) |
+| [`07-p1.3-especies.md`](./07-p1.3-especies.md) | Plan detallado para normalizar `catalogo-plantas.html`, servir fotos desde R2 y publicar páginas estáticas por especie | Implementación P1.3 |
 
 ---
 
@@ -34,7 +35,7 @@ cayendo a **WhatsApp**.
 > ⚠️ **Regla de esta carpeta**: cualquier agente que complete o avance una
 > tarea de estos planes DEBE actualizar este checklist y la fecha.
 
-Última actualización: **2026-11-01**
+Última actualización: **2026-11-03**
 
 ### ✅ P0 — Implementado (sesión inicial de SEO/Analytics)
 
@@ -55,7 +56,7 @@ cayendo a **WhatsApp**.
 ### ⬜ P1 — Próximas tareas de mayor impacto (ver `02`)
 
 - [ ] Páginas de categoría: ~~`/tienda/[categoria]`~~ → **hecho 2026-11-01**: 4 URLs SSG (`/tienda/arbusto`, `/tienda/arbol`, `/tienda/trepadora`, `/tienda/cubresuelo`) con H1 + metadata + canonical únicos, intro SEO data-driven (`descripcionSeo`/`h1`/`whatsappMensaje` en `CATEGORIAS`), sitemap actualizado, columna "Plantas" en Footer. Filtros/búsqueda idénticos a `/tienda` (prop `categoriaInicial` en `TiendaClient`).
-- [ ] Páginas de especie: `/planta/[slug]` (119 páginas long-tail)
+- [ ] Páginas de especie: `/planta/[slug]` (119 páginas long-tail) — especificación detallada preparada en `07-p1.3-especies.md` (2026-11-03); falta implementar y aprobar la migración de datos.
 - [ ] Google Business Profile (tarea humana — CRÍTICO para local SEO y GEO)
 - [ ] Sección landing "Por qué hacer un jardín"
 - [x] ~~Definir dominio propio y setear `NEXT_PUBLIC_SITE_URL`~~ → **hecho 2026-10-26**: `https://www.jardincordillera.cl` (env local + Vercel + redeploy)
